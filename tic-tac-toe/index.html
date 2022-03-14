@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="assets/icon/tictac.ico">
+    <title>Tic-Tac-Toe</title>
+</head>
+<body>
+    <div class="container">
+        <h1>tic-tac-toe</h1>
+        <section class="section">
+            <div class="wraper">
+                <div>
+                    <img class="wraper-img" src="assets/icon/Tac.png" alt="tic-tac-toe-image" width="250px">
+                </div>
+                <h3>How many players?</h3>
+                <div class="btn-players">
+                    <div class="btn" data-players="1">1</div>
+                    <div class="btn" data-players="2">2</div>
+                </div>
+            </div>
+            <div class="playing-field">
+                <div class="game-container">
+                    <div data-cell-index="0" class="cell"></div>
+                    <div data-cell-index="1" class="cell"></div>
+                    <div data-cell-index="2" class="cell"></div>
+                    <div data-cell-index="3" class="cell"></div>                
+                    <div data-cell-index="4" class="cell"></div>
+                    <div data-cell-index="5" class="cell"></div>
+                    <div data-cell-index="6" class="cell"></div>
+                    <div data-cell-index="7" class="cell"></div>
+                    <div data-cell-index="8" class="cell"></div>
+                </div>
+                <h3 class="display-status">It's <span class="move-status"></span>'s turn</h3>
+            </div>
+            <div class="winner-container">
+                <div class="winner">
+                    <div class="figura"></div>
+                    <h2>Player</h2>
+                    <h2>won at move <span class="moves"></span>!</h2>
+                </div>
+            </div> 
+        </section>
+        <div class="rating">
+            <h3>Rating</h3>
+            <table class="table">
+                <tr>
+                    <th class="th">Game</th>
+                    <th class="th">Winner</th>
+                    <th class="th">Moves</th>
+                </tr>
+                <tbody class="rating-tr">
+                    <tr>
+                        <td colspan="3">Here will be your results</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <footer class="footer">
+            <a class="link" href="https://github.com/Shekhmametyeva" target="_blank">
+                <img class="icon" src="assets/icon/github-logo.png" alt="icon github" height="30">
+            </a>
+            <p class="author">© 2022 by Alina Shekhmametyeva</p>
+            <a class="link" href="https://rs.school/js/" target="_blank"><img class="icon" src="assets/icon/logo-rsschool3.png" alt="logo rss" height="30"></a>
+        </footer>
+    </div>
+    <script src="index.js"></script>
+    <script src="confetti.js"></script>
+</body>
+</html>
