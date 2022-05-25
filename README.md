@@ -1,6 +1,6 @@
 # Portfolio
 ***
-Photographer's-portfolio: https://shekhmametyeva.github.io/Portfolio/photographer's-portfolio/
+Photographer's-portfolio: https://shekhmametyeva.github.io/Portfolio/photographer-s-portfolio/
 
 Audio-player: https://shekhmametyeva.github.io/Portfolio/audio-player/
 
