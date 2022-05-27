@@ -314,6 +314,10 @@ a {
     background-color: var(--color-primary);
     cursor: default;
     color: var(--color-dark-3xl);
+    font-family: Georgia;
+    font-size: 20px;
+    line-height: 23px;
+    letter-spacing: 0.06em;
 }
 .paginator:hover {
     background-color: var(--color-primary);

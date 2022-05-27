@@ -25,9 +25,9 @@ html {
 }
 
 body {
-  background-color: #000000;
   font-family: "Inter";
   color: #ffffff;
+  background-color: #000000;
 }
 @media (max-width: 768px) {
   body.hidden {
@@ -41,14 +41,14 @@ body {
 }
 
 .wraper-dark {
+  display: none;
+  width: 100%;
+  height: 100%;
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
   background-color: rgba(0, 0, 0, 0.541);
   cursor: pointer;
-  display: none;
 }
 @media (max-width: 768px) {
   .wraper-dark.wraper-dark_open {
@@ -69,11 +69,11 @@ body {
 .button {
   width: 220px;
   height: 55px;
-  background-color: #bdae82;
-  border: 2px solid #bdae82;
   font-family: "Inter";
   font-size: 20px;
   cursor: pointer;
+  background-color: #bdae82;
+  border: 2px solid #bdae82;
   transition: 0.3s;
 }
 .button:hover {
@@ -82,9 +82,9 @@ body {
 }
 
 .link {
-  text-decoration: none;
   font-weight: 600;
   color: #ffffff;
+  text-decoration: none;
   cursor: pointer;
 }
 .link:hover {
@@ -104,8 +104,7 @@ a .icon:hover {
 
 .title__wrap {
   width: 50%;
-  margin: 0 auto;
-  margin-bottom: 60px;
+  margin: 0 auto 60px;
   text-align: center;
   background-image: linear-gradient(to top, #000 39px, #bdae82 39px, #bdae82 41px, #000 41px);
 }
@@ -127,8 +126,8 @@ a .icon:hover {
   }
 
   .title__wrap {
-    margin-bottom: 50px;
     width: 80%;
+    margin-bottom: 50px;
   }
 
   .title {
@@ -153,10 +152,10 @@ a .icon:hover {
   background: url(assets/img/bg.jpg) 30% 0 no-repeat;
 }
 .header__container {
+  padding: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
 }
 .header__box {
   display: flex;
@@ -181,14 +180,14 @@ a .icon:hover {
   height: 35px;
 }
 .header .hamburger {
-  display: none;
   width: 50px;
   height: 28px;
+  position: relative;
+  z-index: 2;
+  display: none;
   flex-direction: column;
   justify-content: space-between;
   cursor: pointer;
-  position: relative;
-  z-index: 2;
 }
 .header .hamburger__item {
   width: 50px;
@@ -220,9 +219,9 @@ a .icon:hover {
     background-color: #000000;
   }
   .header .nav__list {
-    flex-direction: column;
     height: 50%;
     font-size: 1.6rem;
+    flex-direction: column;
   }
   .header .nav.nav_open {
     right: 0;
@@ -252,20 +251,20 @@ a .icon:hover {
 
 .primary {
   padding: 0 20px;
-  background: url(assets/img/bg.jpg) 30% -90px no-repeat;
   font-family: "Inter";
   line-height: 40px;
+  background: url(assets/img/bg.jpg) 30% -90px no-repeat;
 }
 .primary__container {
   width: 530px;
   padding: 11.3% 0 23.7% 60px;
 }
 .primary__title {
+  padding-bottom: 10px;
   font-family: "Merriweather";
   font-weight: 700;
   font-size: 3rem;
   line-height: 6rem;
-  padding-bottom: 10px;
 }
 .primary__button {
   margin-top: 25px;
@@ -286,10 +285,10 @@ a .icon:hover {
 }
 @media (max-width: 700px) {
   .primary {
+    height: 450px;
+    padding: 0;
     background-position: 60% -200px;
     background-size: auto;
-    padding: 0;
-    height: 450px;
   }
   .primary__container {
     width: 100%;
@@ -316,11 +315,11 @@ a .icon:hover {
 }
 
 .skills__container {
+  padding: 0 10px 2px;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: 40px;
-  padding: 0 10px 2px;
 }
 .skills__box_wraper {
   display: flex;
@@ -340,10 +339,10 @@ a .icon:hover {
   fill: #bdae82;
 }
 .skills__title {
+  padding: 20px 0;
   font-weight: 700;
   font-size: 1rem;
   line-height: 2rem;
-  padding: 20px 0;
   letter-spacing: 0.02rem;
 }
 
@@ -353,12 +352,12 @@ a .icon:hover {
   align-items: center;
 }
 .portfolio__button__container {
+  margin-bottom: 60px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   gap: 5px;
-  margin-bottom: 60px;
 }
 .portfolio__button__box {
   display: flex;
@@ -425,6 +424,9 @@ a .icon:hover {
 .video-player__icon.hidden {
   display: none;
 }
+.video-player .video {
+  width: 100%;
+}
 @media (max-width: 1023.9px) {
   .video-player {
     overflow: hidden;
@@ -442,9 +444,9 @@ a .icon:hover {
 }
 .price__box {
   width: 450px;
+  padding: 43px 0;
   text-align: center;
   border: 2px solid #bdae82;
-  padding: 43px 0;
 }
 .price__title {
   font-family: "Merriweather";
@@ -453,12 +455,12 @@ a .icon:hover {
   line-height: 2.8rem;
 }
 .price__subtitle {
+  padding: 20px 0;
   font-family: "Merriweather";
   font-weight: 700;
   font-size: 1.2rem;
   line-height: 2.4rem;
   color: #bdae82;
-  padding: 20px 0;
 }
 .price__button {
   margin-top: 40px;
@@ -468,8 +470,8 @@ a .icon:hover {
     flex-wrap: wrap;
   }
   .price__box {
-    padding: 20px 0;
     width: 350px;
+    padding: 20px 0;
   }
   .price__subtitle {
     padding: 0;
@@ -483,10 +485,10 @@ a .icon:hover {
 
 .contact {
   height: 700px;
-  background-image: url(assets/img/contacts.jpg);
-  background-position: 30% 0;
   padding-top: 0;
   margin-top: 100px;
+  background-image: url(assets/img/contacts.jpg);
+  background-position: 30% 0;
 }
 .contact__title {
   padding: 0;
@@ -500,18 +502,18 @@ a .icon:hover {
   flex-direction: column;
 }
 .contact__form {
+  padding: 40px 0 30px;
   display: flex;
   flex-direction: column;
   gap: 20px;
-  padding: 40px 0 30px;
 }
 .contact__input {
+  height: 50px;
+  padding-left: 20px;
   background: rgba(0, 0, 0, 0.5);
   border: 2px solid #bdae82;
-  height: 50px;
   color: #ffffff;
   font: inherit;
-  padding-left: 20px;
 }
 .contact__input::-moz-placeholder {
   color: #bdae82;
@@ -549,15 +551,15 @@ a .icon:hover {
 
 .footer {
   height: 150px;
+  padding: 50px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 50px 20px;
 }
 .footer__social {
+  width: 190px;
   display: flex;
   justify-content: space-between;
-  width: 190px;
 }
 .footer__link {
   cursor: pointer;

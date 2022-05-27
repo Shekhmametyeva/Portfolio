@@ -68,8 +68,6 @@ const petsCard = document.querySelectorAll('.pets-card');
   })  
 }
 
-console.log(pets) 
-
 
 // Pagination
 let size = getSize(document.documentElement.clientWidth);
@@ -184,7 +182,7 @@ function changePage (event) {
   } else if (event.currentTarget.classList.contains("next")) {
     currentPages = +currentPages + 1
   }
-  paginator.children[0].innerHTML = (+currentPages + 1);
+  paginator.innerHTML = (+currentPages + 1);
   drawCards (currentPages)
   disableArrow ()
 }

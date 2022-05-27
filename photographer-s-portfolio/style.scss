@@ -437,6 +437,9 @@ a .icon {
             display: none;
         }
     }
+    .video {
+        width: 100%;
+    }
     @media (max-width:1023.9px) {
         overflow: hidden;
         .video-player__icon {

@@ -5,6 +5,8 @@ const btnSearch = document.querySelector(".search-button");
 const btnCancel = document.querySelector(".cancel-button");
 const openDiv = document.querySelector(".open");
 const openImg = document.querySelector(".open-img");
+const closeImg = document.querySelector(".close-img");
+const openContainer = document.querySelector(".open-container");
 const body = document.querySelector('body');
 
 let query = "car";
@@ -44,8 +46,9 @@ function canselQuery () {
 
 function imagesOpen (event) {
     if (event.target.className === 'gallery-img') {
-        openDiv.classList.add('active')
-        openImg.src = event.target.src;
+        openContainer.classList.remove('hidden')
+        openDiv.classList.add('active');
+        openDiv.innerHTML = `<img class="open-img" src="${event.target.src}" alt="image"></img>`
         body.classList.add('hidden')
     } 
 } 
@@ -53,6 +56,7 @@ function imagesOpen (event) {
 function imagesClose () {
     openDiv.classList.remove('active');
     body.classList.remove('hidden')
+    openContainer.classList.add('hidden')
 }
 
 window.addEventListener("load", () => {
@@ -78,5 +82,8 @@ window.addEventListener("load", () => {
 
     wrapImg.addEventListener("click", imagesOpen);
 
-    openDiv.addEventListener('click', imagesClose);
+    closeImg.addEventListener('click', imagesClose);
+    openContainer.addEventListener('click', imagesClose);
 })
+
+window.addEventListener('keydown', () => input.focus())
