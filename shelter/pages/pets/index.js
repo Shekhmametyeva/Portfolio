@@ -11,7 +11,9 @@ const popupElements = document.querySelectorAll('[data-popup]');
 const popupImg = document.querySelector('.popup-img');
 let isMenuOpen = false;
 
-
+window.addEventListener('load', () => {
+  body.classList.remove('hidden')
+})
 // hamburger menu
 
 hamburger.addEventListener('click', toggleMenu);
@@ -100,12 +102,9 @@ let currentPages = 0;
 if (size === 'mobilQuery') {
   pages = 16;
   petsPages = 3;
-  hidden.forEach(el => el.remove());
-  hiddenMob.forEach(el => el.remove());
 } else if (size === 'tabletQuery') {
   pages = 8;
   petsPages = 6;
-  hidden.forEach(el => el.remove());
 } else if (size === 'desktopQuery') {
   pages = 6;
   petsPages = 8;
@@ -147,20 +146,16 @@ const petsRandomArray = createArrayPets();
 
 function drawCards (currentPages) {
   let randomIndex = petsRandomArray.slice(petsPages * currentPages, petsPages * currentPages + petsPages);
-  console.log(randomIndex)
 
-  subtitlePets.forEach((el,index) => {
+  petsCard.forEach((el,index) => {
+    if (size === 'tabletQuery' && el.closest('.hidden')) { return}
+    if (size === 'mobilQuery' && (el.closest('.hidden') || el.closest('.hidden-mob'))) { return}
+  
     const objPets = pets[randomIndex[index]];
-    el.innerHTML = objPets.name;
-  })
-
-  petsImg.forEach((el,index) => {
-    const objPets = pets[randomIndex[index]];
-    el.src = objPets.img;
-  })
-
-  petsCard.forEach((el, index) => {
-    el.id = randomIndex[index]
+    el.children[0].src = objPets.img;
+    el.children[1].innerHTML = objPets.name;
+    el.children[2].id = randomIndex[index]
+  
   })
 
 }

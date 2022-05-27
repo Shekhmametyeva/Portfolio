@@ -157,10 +157,12 @@ a {
 }
 .pets-card {
     width: 270px;
+    height: 435px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: var(--color-light-s);
+    justify-content: flex-end;
+    background: var(--color-light-s) url(../../assets/icons/loading.gif) 50% 30% / 100px no-repeat;
     cursor: pointer;
 }
 .pets-card:hover {

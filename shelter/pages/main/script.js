@@ -146,5 +146,33 @@ function createСarousel (event) {
 
 
 
+// подгрузка изображений в our pets 
 
+const lazyImage = document.querySelectorAll('[data-src]');
+const windowHeight = document.documentElement.clientHeight;
 
+console.log(lazyImage)
+
+let lazyImagePosition = [];
+if (lazyImage.length > 0) {
+  lazyImage.forEach(img => {
+    lazyImagePosition.push(img.getBoundingClientRect().top + pageYOffset)
+    lazyScrollCheck ()
+  })
+}
+
+window.addEventListener('scroll', () => {
+  if (document.querySelectorAll('[data-src]').length > 0) {
+    lazyScrollCheck ()
+  }
+})
+console.log(lazyImagePosition)
+function lazyScrollCheck () {
+  let imgIndex = lazyImagePosition.findIndex(el => pageYOffset > el - windowHeight);
+  console.log(imgIndex)
+  if (imgIndex >= 0) {
+    lazyImage[imgIndex].src = lazyImage[imgIndex].dataset.src;
+    lazyImage[imgIndex].removeAttribute('data-src');
+  }
+  delete lazyImagePosition[imgIndex];
+}

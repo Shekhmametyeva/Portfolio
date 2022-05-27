@@ -276,11 +276,15 @@ a {
     }
 }
 .pets-card {
+    width: 270px;
+    height: 435px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: flex-end;
     background-color: var(--color-light-s);
     cursor: pointer;
+    background: var(--color-light-s) url(../../assets/icons/loading.gif) 50% 30% / 100px no-repeat;
 }
 .pets-card:hover {
     box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
