@@ -10,6 +10,7 @@ class App extends React.Component {
     super(props);
     this.checkElement = this.checkElement.bind(this);
     this.changeStateValue = this.changeStateValue.bind(this);
+    this.deleteAllItem = this.deleteAllItem.bind(this);
     this.state = {
       data: [],
       value: '',
@@ -26,14 +27,19 @@ class App extends React.Component {
     fetch('http://localhost:5000/api/award?pageNumber=1&pageSize=20').then(response => {
       return response.json()
     }).then(data => {
-      
+      console.log(data.items)
+      data.items.sort((a,b) => {
+        if (!isNaN(+a.title) && !isNaN(+b.title)) {
+            return a.title - b.title
+        }
+
+        return a.title.toLowerCase() >= b.title.toLowerCase() ? 1 : -1;
+        
+        
+    });
       this.setState({data: data.items}); 
       console.log(this.state.data)
     })  
-  }
-
-  componentDidMount() {
-    this.fetchData();
   }
 
   checkElement(data) {
@@ -50,7 +56,8 @@ class App extends React.Component {
     if (!data.trim()) {
       return
     }
-    this.sendData(data)
+    this.sendData(data);
+    this.changeStateValue('')
   }
 
   sendData(data) {
@@ -62,6 +69,29 @@ class App extends React.Component {
     })
   }
 
+  deleteAllItem() {
+    const promiseArr = this.state.data.map((el) => fetch(`http://localhost:5000/api/award/${el.id}`, {
+      method: 'DELETE',
+    }));
+
+    Promise.all(promiseArr).then(response => {
+      console.log(response)
+      response.forEach(el => {
+          if (el.ok) {
+              console.log('Наградs успешно удалена');
+          }
+      })}).then(() => {
+        console.log('перерисоваь')
+        this.fetchData() 
+    });
+  }
+  
+
+
+
+  componentDidMount() {
+    this.fetchData();
+  }
 
 
   render() {
@@ -72,7 +102,7 @@ class App extends React.Component {
             <HeaderComponent />
             <div className="shopping__form__container">
               <InputComponent funcCheckElement={this.checkElement} changeStateValue={this.changeStateValue} value={this.state.value}/>
-              <BtnDeleteComponent />
+              <BtnDeleteComponent funcCheckElement={this.deleteAllItem}/>
             </div>
             <ShoppingListComponent  data={this.state.data}/>
           </div>
