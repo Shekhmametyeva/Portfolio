@@ -4,6 +4,7 @@ import HeaderComponent from '../headerComponent/HeaderComponent';
 import InputComponent from '../inputComponent/InputComponent';
 import BtnDeleteComponent from '../btnDeleteComponent/BtnDeleteComponent';
 import ShoppingListComponent from '../shoppingListComponent/ShoppingListComponent';
+import PopupComponent from '../popupComponent/PopupComponent';
 
 class App extends React.Component {
   constructor(props) {
@@ -14,6 +15,7 @@ class App extends React.Component {
     this.state = {
       data: [],
       value: '',
+      isPopup: false,
     };
   }
 
@@ -84,6 +86,7 @@ class App extends React.Component {
 
 
   render() {
+    const popup = this.state.isPopup ? <PopupComponent /> : null;
     return (
       <div className='wrapper'>
         <div className='wrapper__ligth'>
@@ -94,7 +97,7 @@ class App extends React.Component {
               <BtnDeleteComponent callback={this.deleteItems} value ={this.state.data}/>
             </div>
             <ShoppingListComponent  data={this.state.data} callback={this.deleteItems}/>
-
+            {popup}  
           </div>
         </div>
       </div>
