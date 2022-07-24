@@ -1,5 +1,6 @@
 import './App.css';
 import React from 'react';
+import HeaderComponent from '../headerComponent/HeaderComponent';
 
 class App extends React.Component {
   render() {
@@ -7,6 +8,7 @@ class App extends React.Component {
       <div className='wrapper'>
         <div className='wrapper__ligth'>
           <div className='shopping'>
+            <HeaderComponent />
           </div>
         </div>
       </div>
