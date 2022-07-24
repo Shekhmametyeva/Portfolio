@@ -12,11 +12,32 @@ class App extends React.Component {
     this.checkElement = this.checkElement.bind(this);
     this.changeStateValue = this.changeStateValue.bind(this);
     this.deleteItems = this.deleteItems.bind(this);
+    this.changeStateIsPopup = this.changeStateIsPopup.bind(this)
     this.state = {
       data: [],
       value: '',
       isPopup: false,
     };
+
+    window.addEventListener('keydown', (event) => {
+      if(event.key === 'Enter') {
+        if(document.activeElement.classList[0] === 'shopping__input') {
+          this.checkElement(this.state.value);
+          return
+        }
+        if(this.state.isPopup) {
+          this.changeStateIsPopup(this.state.isPopup)
+        }
+      }
+      
+  })
+  }
+
+  changeStateIsPopup(value) {
+    if (value) {
+      this.deleteItems(this.state.data)
+    }
+    this.setState({isPopup: !this.state.isPopup})
   }
 
   changeStateValue(newValue) {
@@ -86,7 +107,7 @@ class App extends React.Component {
 
 
   render() {
-    const popup = this.state.isPopup ? <PopupComponent /> : null;
+    const popup = this.state.isPopup ? <PopupComponent callback={this.changeStateIsPopup} /> : null;
     return (
       <div className='wrapper'>
         <div className='wrapper__ligth'>
@@ -94,7 +115,7 @@ class App extends React.Component {
             <HeaderComponent />
             <div className="shopping__form__container">
               <InputComponent callback={this.checkElement} changeStateValue={this.changeStateValue} value={this.state.value}/>
-              <BtnDeleteComponent callback={this.deleteItems} value ={this.state.data}/>
+              <BtnDeleteComponent callback={(this.changeStateIsPopup)} />
             </div>
             <ShoppingListComponent  data={this.state.data} callback={this.deleteItems}/>
             {popup}  
