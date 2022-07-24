@@ -6,6 +6,26 @@ import BtnDeleteComponent from '../btnDeleteComponent/BtnDeleteComponent';
 import ShoppingListComponent from '../shoppingListComponent/ShoppingListComponent';
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.fetchData = this.fetchData.bind(this);
+    this.state = {
+      data: []
+    };
+  }
+
+  fetchData(){
+    fetch('http://localhost:5000/api/award?pageNumber=1&pageSize=10').then(response => {
+      return response.json()
+    }).then(data => {
+      this.setState({data: data.items}); 
+    })  
+  }
+
+  componentDidMount() {
+    this.fetchData()
+  }
+
   render() {
     return (
       <div className='wrapper'>
@@ -16,7 +36,7 @@ class App extends React.Component {
               <InputComponent />
               <BtnDeleteComponent />
             </div>
-            <ShoppingListComponent  data={['apple', 'banana', 'fructs']}/>
+            <ShoppingListComponent  data={this.state.data}/>
           </div>
         </div>
       </div>

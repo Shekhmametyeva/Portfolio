@@ -6,8 +6,14 @@
     justify-content: space-between;
     align-items: center;
     background-color: #fff;
-    border: 2px solid rgb(5, 220, 180);
+    border: 2px solid #05dcb4;
     border-radius: 16px;
+}
+.shopping__form:focus-within {
+    border: 2px solid #f9b926;
+}
+.shopping__form:focus-within .icon:hover{
+    fill: #f9b926;
 }
 .shopping__input {
     width: 100%;

@@ -3,9 +3,7 @@ import React from 'react';
 import ButtonSvgComponents from '../buttonSvgComponents/ButtonSvgComponents';
 
 class ShoppingItemComponent extends React.Component {
-    constructor(props) {
-        super(props)
-    }
+    
     render() {
         return (
             <div className="shopping__item">
