@@ -43,7 +43,6 @@ class App extends React.Component {
     const match = this.state.data.find(el => el.title === data);
     if(match) {
       const elem = document.getElementById(match.id);
-      console.log(elem)
       elem.animate([{backgroundColor: `transparent`}, {backgroundColor: `#05dcb57c`}], {
               duration: 300,
               iterations: 3
@@ -66,25 +65,18 @@ class App extends React.Component {
   }
 
   deleteItems(data) {
-    console.log(data)
+    if (!data.length) {
+      return
+    }
     const promiseArr = data.map((el) => fetch(`http://localhost:5000/api/award/${el.id}`, {
       method: 'DELETE',
     }));
 
-    Promise.all(promiseArr).then(response => {
-      console.log(response)
-      response.forEach(el => {
-          if (el.ok) {
-              console.log('Наградs успешно удалена');
-          }
-      })}).then(() => {
-        console.log('перерисоваь')
-        this.fetchData() 
+    Promise.all(promiseArr).then(() => {
+      this.fetchData() 
     });
   }
   
-
-
 
   componentDidMount() {
     this.fetchData();
@@ -102,6 +94,7 @@ class App extends React.Component {
               <BtnDeleteComponent callback={this.deleteItems} value ={this.state.data}/>
             </div>
             <ShoppingListComponent  data={this.state.data} callback={this.deleteItems}/>
+
           </div>
         </div>
       </div>
