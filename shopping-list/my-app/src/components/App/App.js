@@ -3,6 +3,7 @@ import React from 'react';
 import HeaderComponent from '../headerComponent/HeaderComponent';
 import InputComponent from '../inputComponent/InputComponent';
 import BtnDeleteComponent from '../btnDeleteComponent/BtnDeleteComponent';
+import ShoppingListComponent from '../shoppingListComponent/ShoppingListComponent';
 
 class App extends React.Component {
   render() {
@@ -15,6 +16,7 @@ class App extends React.Component {
               <InputComponent />
               <BtnDeleteComponent />
             </div>
+            <ShoppingListComponent  data={['apple', 'banana', 'fructs']}/>
           </div>
         </div>
       </div>
