@@ -3,13 +3,12 @@ import './ButtonSvgComponents.css';
 import IconsSVG from '../../assets/icons/sprite.svg';
 
 class ButtonSvgComponents extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+    
     render() {
+        const isClass = this.props.class ? `button ${this.props.class}` : `button`;
         return(
-            <button className={`button ${this.props.class}`}>
-                <svg className={`icon ${this.props.iconClass}`}>
+            <button className={isClass}>
+                <svg className={`icon`}>
                     <use xlinkHref={`${IconsSVG}#${this.props.name}` } />
                 </svg>
             </button>
