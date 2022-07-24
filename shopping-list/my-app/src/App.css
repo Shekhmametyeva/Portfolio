@@ -1,0 +1,30 @@
+.wrapper {
+    min-height: 100vh;
+    background: url(assets/img/bg.jpg) bottom/cover no-repeat;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    color: #2b2b2b;
+    font-style: italic;
+  }
+  .wrapper__ligth {
+    width: 100%;
+    min-height: 100vh;
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.5490196078);
+  }
+  
+  .shopping {
+    position: relative;
+    width: 500px;
+    height: 80vh;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    background-color: #eee;
+    border: 5px solid rgb(5, 220, 180);
+    border-radius: 16px;
+  }
