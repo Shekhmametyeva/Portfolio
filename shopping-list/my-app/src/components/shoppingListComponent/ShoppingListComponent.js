@@ -12,7 +12,7 @@ class ShoppingListComponent extends React.Component {
         }
         return (
             <div className='shopping__list'>
-                {this.props.data.map(el => <ShoppingItemComponent element={el} key={el.id} callback={this.props.callback}/>)}
+                {this.props.data.map(el => <ShoppingItemComponent element={el} key={el.id} callback={this.props.callback} value={this.props.value}/>)}
             </div>
         )
     }

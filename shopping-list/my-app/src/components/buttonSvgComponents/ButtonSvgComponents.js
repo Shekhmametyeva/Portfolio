@@ -7,6 +7,7 @@ class ButtonSvgComponents extends React.Component {
     isCallback() {
         if(this.props.callback) {
             this.props.callback(this.props.value)
+            
         }
         return
     }

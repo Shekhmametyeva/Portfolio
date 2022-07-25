@@ -11,11 +11,14 @@ class App extends React.Component {
     super(props);
     this.sendData = this.sendData.bind(this);
     this.changeStateValue = this.changeStateValue.bind(this);
+    this.changeStateitemValue = this.changeStateitemValue.bind(this);
     this.deleteItems = this.deleteItems.bind(this);
-    this.changeStateIsPopup = this.changeStateIsPopup.bind(this)
+    this.changeStateIsPopup = this.changeStateIsPopup.bind(this);
+    this.editData = this.editData.bind(this)
     this.state = {
       data: [],
       value: '',
+      itemValue: '',
       isPopup: false,
     };
 
@@ -38,6 +41,12 @@ class App extends React.Component {
       this.deleteItems(this.state.data)
     }
     this.setState({isPopup: !this.state.isPopup})
+  }
+
+  changeStateitemValue(newValue) {
+    if (this.state.itemValue !== newValue) {
+      this.setState({itemValue: newValue})
+    }
   }
 
   changeStateValue(newValue) {
@@ -63,6 +72,7 @@ class App extends React.Component {
 
   checkElement(data) {
     this.changeStateValue('');
+    this.changeStateitemValue('')
     const match = this.state.data.find(el => el.title === data);
     if(match) {
       const elem = document.getElementById(match.id);
@@ -86,6 +96,17 @@ class App extends React.Component {
       }).then(() => {
         this.fetchData()
       })
+    }  
+  }
+
+  editData(id, data) {
+    if(this.checkElement(data)) {
+      fetch(`http://localhost:5000/api/award/${id}`, {
+        method: 'PUT',
+        body: JSON.stringify({title: data}),
+    }).then(() => {
+      this.fetchData()
+    })
     }  
   }
 
@@ -119,7 +140,7 @@ class App extends React.Component {
               <InputComponent callback={this.sendData} changeStateValue={this.changeStateValue} value={this.state.value}/>
               <BtnDeleteComponent callback={(this.changeStateIsPopup)} />
             </div>
-            <ShoppingListComponent  data={this.state.data} callback={this.deleteItems}/>
+            <ShoppingListComponent  data={this.state.data} callback={{deleteItems: this.deleteItems, editData: this.editData, changeStateitemValue: this.changeStateitemValue}} value={this.state.itemValue}/>
             {popup}  
           </div>
         </div>
