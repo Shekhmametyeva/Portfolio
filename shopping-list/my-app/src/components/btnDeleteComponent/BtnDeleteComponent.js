@@ -5,7 +5,7 @@ import ButtonSvgComponents from '../buttonSvgComponents/ButtonSvgComponents';
 class BtnDeleteComponent extends React.Component {
     render() {
         return(
-            <ButtonSvgComponents name={'delete'} class={'shopping__button'} callback={this.props.callback} value={this.props.value}/>
+            <ButtonSvgComponents name={'delete'} callback={this.props.callback} value={this.props.value}/>
         )
     }
 }

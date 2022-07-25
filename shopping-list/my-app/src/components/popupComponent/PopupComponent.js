@@ -9,8 +9,8 @@ class PopupComponent extends React.Component {
                 <div className="popup__container">
                     <p className="shopping__text">Вы действительно хотите очистить весь список?</p>
                     <div>
-                        <ButtonSvgComponent name={'add'} class={'close shopping__button'} callback={this.props.callback} value ={false}/>
-                        <ButtonSvgComponent name={'finish'} class={'shopping__button'} callback={this.props.callback} value ={true}/>  
+                        <ButtonSvgComponent name={'add'} callback={this.props.callback} value ={false}/>
+                        <ButtonSvgComponent name={'finish'} callback={this.props.callback} value ={true}/>  
                     </div>
                 </div>
             </div>

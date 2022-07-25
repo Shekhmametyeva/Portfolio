@@ -12,11 +12,11 @@ class ButtonSvgComponents extends React.Component {
     }
     
     render() {
-        const isClass = this.props.class ? `button ${this.props.class}` : `button`;
+        const isClass = this.props.class ? `icon ${this.props.class}` : `icon`;
         
         return(
-            <button className={isClass} onClick={() => this.isCallback()}>
-                <svg className={`icon`}>
+            <button className={'button'} onClick={() => this.isCallback()}>
+                <svg className={isClass}>
                     <use xlinkHref={`${IconsSVG}#${this.props.name}`} />
                 </svg>
             </button>

@@ -2,6 +2,7 @@
     background: transparent;
     border: none;
     cursor: pointer;
+    padding: 0 10px;
 }
 .icon {
     width: 30px;
