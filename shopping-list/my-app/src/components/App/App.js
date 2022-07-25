@@ -9,7 +9,7 @@ import PopupComponent from '../popupComponent/PopupComponent';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.checkElement = this.checkElement.bind(this);
+    this.sendData = this.sendData.bind(this);
     this.changeStateValue = this.changeStateValue.bind(this);
     this.deleteItems = this.deleteItems.bind(this);
     this.changeStateIsPopup = this.changeStateIsPopup.bind(this)
@@ -22,7 +22,7 @@ class App extends React.Component {
     window.addEventListener('keydown', (event) => {
       if(event.key === 'Enter') {
         if(document.activeElement.classList[0] === 'shopping__input') {
-          this.checkElement(this.state.value);
+          this.sendData(this.state.value);
           return
         }
         if(this.state.isPopup) {
@@ -75,16 +75,18 @@ class App extends React.Component {
     if (!data.trim()) {
       return
     }
-    this.sendData(data);
+    return data
   }
 
   sendData(data) {
-    fetch('http://localhost:5000/api/award', {
-      method: 'POST',
-      body: JSON.stringify({title: data}),
-    }).then(() => {
-      this.fetchData()
-    })
+    if(this.checkElement(data)) {
+      fetch('http://localhost:5000/api/award', {
+        method: 'POST',
+        body: JSON.stringify({title: data}),
+      }).then(() => {
+        this.fetchData()
+      })
+    }  
   }
 
   deleteItems(data) {
@@ -114,7 +116,7 @@ class App extends React.Component {
           <div className='shopping'>
             <HeaderComponent />
             <div className="shopping__form__container">
-              <InputComponent callback={this.checkElement} changeStateValue={this.changeStateValue} value={this.state.value}/>
+              <InputComponent callback={this.sendData} changeStateValue={this.changeStateValue} value={this.state.value}/>
               <BtnDeleteComponent callback={(this.changeStateIsPopup)} />
             </div>
             <ShoppingListComponent  data={this.state.data} callback={this.deleteItems}/>
