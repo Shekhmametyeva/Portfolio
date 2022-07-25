@@ -1,6 +1,6 @@
 import './ShoppingItemComponent.css';
 import React from 'react';
-import ButtonSvgComponents from '../buttonSvgComponents/ButtonSvgComponents';
+import ButtonSvgComponents from '../buttonSvgComponent/ButtonSvgComponent';
 import InputItemComponent from '../InputItemComponent/InputItemComponent';
 
 class ShoppingItemComponent extends React.Component {

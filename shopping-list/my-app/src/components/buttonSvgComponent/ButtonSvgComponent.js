@@ -1,5 +1,5 @@
 import React from 'react';
-import './ButtonSvgComponents.css';
+import './ButtonSvgComponent.css';
 import IconsSVG from '../../assets/icons/sprite.svg';
 
 class ButtonSvgComponents extends React.Component {

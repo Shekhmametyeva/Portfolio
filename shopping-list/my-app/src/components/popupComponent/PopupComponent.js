@@ -1,6 +1,6 @@
 import './PopupComponent.css';
 import React from 'react';
-import ButtonSvgComponent from '../buttonSvgComponents/ButtonSvgComponents'
+import ButtonSvgComponent from '../buttonSvgComponent/ButtonSvgComponent'
 
 class PopupComponent extends React.Component {
     render() {

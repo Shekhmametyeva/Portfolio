@@ -2,9 +2,9 @@ import './App.css';
 import React from 'react';
 import HeaderComponent from '../headerComponent/HeaderComponent';
 import InputComponent from '../inputComponent/InputComponent';
-import BtnDeleteComponent from '../btnDeleteComponent/BtnDeleteComponent';
 import ShoppingListComponent from '../shoppingListComponent/ShoppingListComponent';
 import PopupComponent from '../popupComponent/PopupComponent';
+import ButtonSvgComponents from '../buttonSvgComponent/ButtonSvgComponent';
 
 class App extends React.Component {
   constructor(props) {
@@ -13,30 +13,32 @@ class App extends React.Component {
     this.changeStateValue = this.changeStateValue.bind(this);
     this.changeStateitemValue = this.changeStateitemValue.bind(this);
     this.deleteItems = this.deleteItems.bind(this);
-    this.changeStateIsPopup = this.changeStateIsPopup.bind(this);
+    this.changeStatePopup = this.changeStatePopup.bind(this);
     this.editData = this.editData.bind(this)
     this.state = {
       data: [],
       value: '',
       itemValue: '',
       isPopup: false,
+      load: false,
     };
 
     window.addEventListener('keydown', (event) => {
+      console.log('eror')
       if(event.key === 'Enter') {
         if(document.activeElement.classList[0] === 'shopping__input') {
           this.sendData(this.state.value);
           return
         }
         if(this.state.isPopup) {
-          this.changeStateIsPopup(this.state.isPopup)
+          this.changeStatePopup(this.state.isPopup)
         }
       }
       
   })
   }
 
-  changeStateIsPopup(value) {
+  changeStatePopup(value) {
     if (value) {
       this.deleteItems(this.state.data)
     }
@@ -63,7 +65,6 @@ class App extends React.Component {
         if (!isNaN(+a.title) && !isNaN(+b.title)) {
             return a.title - b.title
         }
-
         return a.title.toLowerCase() >= b.title.toLowerCase() ? 1 : -1;    
     });
       this.setState({data: data.items}); 
@@ -94,7 +95,8 @@ class App extends React.Component {
         method: 'POST',
         body: JSON.stringify({title: data}),
       }).then(() => {
-        this.fetchData()
+        
+        this.fetchData();
       })
     }  
   }
@@ -130,7 +132,13 @@ class App extends React.Component {
 
 
   render() {
-    const popup = this.state.isPopup ? <PopupComponent callback={this.changeStateIsPopup} /> : null;
+    const popup = this.state.isPopup ? <PopupComponent callback={this.changeStatePopup} /> : null;
+    const load = this.state.load ? 
+    <div className='load'></div> : 
+    <ShoppingListComponent  
+    data={this.state.data} 
+    callback={{deleteItems: this.deleteItems, editData: this.editData, changeStateitemValue: this.changeStateitemValue}} 
+    value={this.state.itemValue}/>
     return (
       <div className='wrapper'>
         <div className='wrapper__ligth'>
@@ -138,9 +146,9 @@ class App extends React.Component {
             <HeaderComponent />
             <div className="shopping__form__container">
               <InputComponent callback={this.sendData} changeStateValue={this.changeStateValue} value={this.state.value}/>
-              <BtnDeleteComponent callback={(this.changeStateIsPopup)} />
+              <ButtonSvgComponents name={'delete'} callback={this.changeStatePopup} value={this.props.value}/>
             </div>
-            <ShoppingListComponent  data={this.state.data} callback={{deleteItems: this.deleteItems, editData: this.editData, changeStateitemValue: this.changeStateitemValue}} value={this.state.itemValue}/>
+            {load}
             {popup}  
           </div>
         </div>

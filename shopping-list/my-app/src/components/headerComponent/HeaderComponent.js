@@ -1,7 +1,7 @@
 import './HeaderComponent.css';
 import icon from '../../assets/icons/icon.png';
 import React from 'react';
-import ButtonSvgComponents from '../buttonSvgComponents/ButtonSvgComponents';
+import ButtonSvgComponents from '../buttonSvgComponent/ButtonSvgComponent';
 
 class HeaderComponent extends React.Component {
     render() {

@@ -1,6 +1,6 @@
 import './InputItemComponent.css';
 import React from 'react';
-import ButtonSvgComponents from '../buttonSvgComponents/ButtonSvgComponents';
+import ButtonSvgComponents from '../buttonSvgComponent/ButtonSvgComponent';
 
 class InputItemComponent extends React.Component {
     constructor(props) {
