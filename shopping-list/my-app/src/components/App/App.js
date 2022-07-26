@@ -22,20 +22,6 @@ class App extends React.Component {
       isPopup: false,
       load: false,
     };
-
-    window.addEventListener('keydown', (event) => {
-      console.log('eror')
-      if(event.key === 'Enter') {
-        if(document.activeElement.classList[0] === 'shopping__input') {
-          this.sendData(this.state.value);
-          return
-        }
-        if(this.state.isPopup) {
-          this.changeStatePopup(this.state.isPopup)
-        }
-      }
-      
-  })
   }
 
   changeStatePopup(value) {

@@ -1,7 +1,7 @@
 import './ShoppingItemComponent.css';
 import React from 'react';
 import ButtonSvgComponents from '../buttonSvgComponent/ButtonSvgComponent';
-import InputItemComponent from '../InputItemComponent/InputItemComponent';
+import FormItemComponent from '../FormItemComponent/FormItemComponent';
 
 class ShoppingItemComponent extends React.Component {
     constructor(props) {
@@ -13,10 +13,10 @@ class ShoppingItemComponent extends React.Component {
     
     render() {
         const isInput = this.props.isInput ? 
-        <InputItemComponent 
+        <FormItemComponent 
         value ={this.props.value} 
         element={{title: this.props.element.title, id: this.props.element.id}} 
-        callback={{openInput: () => this.props.onEditChange(''), editData: this.props.callback.editData, changeStateitemValue: this.props.callback.changeStateitemValue}}/> : null;
+        callback={{openForm: () => this.props.onEditChange(''), editData: this.props.callback.editData, changeStateitemValue: this.props.callback.changeStateitemValue}}/> : null;
         return (
             <div className="shopping__item" id={this.props.element.id} onDoubleClick={() => this.props.onEditChange(this.props.element.id)}>
                 <p className="shopping__text">{this.props.element.title}</p>
