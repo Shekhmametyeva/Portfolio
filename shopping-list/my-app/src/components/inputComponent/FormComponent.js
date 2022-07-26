@@ -1,4 +1,4 @@
-import './InputComponent.css';
+import './FormComponent.css';
 import React from 'react';
 import ButtonSvgComponents from '../buttonSvgComponent/ButtonSvgComponent';
 // import { deleteAward } from '../../api/api';

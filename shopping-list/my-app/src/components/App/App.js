@@ -1,7 +1,7 @@
 import './App.css';
 import React from 'react';
 import HeaderComponent from '../headerComponent/HeaderComponent';
-import InputComponent from '../inputComponent/InputComponent';
+import FormComponent from '../inputComponent/FormComponent';
 import ShoppingListComponent from '../shoppingListComponent/ShoppingListComponent';
 import PopupComponent from '../popupComponent/PopupComponent';
 import ButtonSvgComponents from '../buttonSvgComponent/ButtonSvgComponent';
@@ -145,7 +145,7 @@ class App extends React.Component {
           <div className='shopping'>
             <HeaderComponent />
             <div className="shopping__form__container">
-              <InputComponent callback={this.sendData} changeStateValue={this.changeStateValue} value={this.state.value}/>
+              <FormComponent callback={this.sendData} changeStateValue={this.changeStateValue} value={this.state.value}/>
               <ButtonSvgComponents name={'delete'} callback={this.changeStatePopup} value={this.props.value}/>
             </div>
             {load}
