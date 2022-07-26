@@ -22,7 +22,6 @@ class FormItemComponent extends React.Component {
                 autoFocus 
                 type='text' 
                 value={this.props.value} 
-                placeholder={this.props.element.title} 
                 className='shopping__input' 
                 onChange={(event) => {this.props.callback.changeStateitemValue(event.target.value)}}/>
                 <ButtonSvgComponents type='submit' name='add' class='shopping__icon' />
