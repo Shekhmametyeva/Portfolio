@@ -28,18 +28,18 @@ class App extends React.Component {
     if (value) {
       this.deleteItems(this.state.data)
     }
-    this.setState({isPopup: !this.state.isPopup})
+    this.setState({...this.state, isPopup: !this.state.isPopup})
   }
 
   changeStateitemValue(newValue) {
     if (this.state.itemValue !== newValue) {
-      this.setState({itemValue: newValue})
+      this.setState({...this.state, itemValue: newValue})
     }
   }
 
   changeStateValue(newValue) {
     if (this.state.value !== newValue) {
-      this.setState({value: newValue})
+      this.setState({...this.state, value: newValue})
     }
   }
 
@@ -53,7 +53,7 @@ class App extends React.Component {
         }
         return a.title.toLowerCase() >= b.title.toLowerCase() ? 1 : -1;    
     });
-      this.setState({data: data.items}); 
+      this.setState({...this.state, data: data.items}); 
     })  
   }
 
