@@ -26,10 +26,11 @@ class FormItemComponent extends React.Component {
     }
     handleSubmit(event){
         event.preventDefault();
-        this.editData(this.props.element.id, this.state.value, this.props.data).then(() => {
-            this.props.callback.openForm()
-        })
-        
+        if(!this.state.load) {
+            this.editData(this.props.element.id, this.state.value, this.props.data).then(() => {
+                this.props.callback.openForm()
+            })
+        }   
     }
     render() {
         const button = this.state.load ? <div className='loading'></div> : <ButtonSvgComponents type='submit' name='add' class='shopping__icon' /> ;

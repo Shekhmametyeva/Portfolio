@@ -27,12 +27,14 @@ class FormComponent extends React.Component {
     }
     handleSubmit(event){
         event.preventDefault();
-        this.sendData(this.state.value, this.props.data)
+        if(!this.state.load) {
+            this.sendData(this.state.value, this.props.data)
+        }
     }
     render() {
         const button = this.state.load ? <div className='loading'></div> : <ButtonSvgComponents type='submit' name={'add'} />
         return (
-            <form className="shopping__form" onSubmit={(event) => this.handleSubmit(event)}>
+            <form className="shopping__form"  onSubmit={(event) => this.handleSubmit(event)}>
                 <input
                 readOnly={this.state.load}
                 type='text' 
