@@ -36,6 +36,10 @@ class App extends React.Component {
       this.setState({...this.state, itemValue: newValue})
     }
   }
+  changeStateLoad() {
+    this.setState({...this.state, load: !this.state.load})
+    
+  }
 
   changeStateValue(newValue) {
     if (this.state.value !== newValue) {
@@ -44,6 +48,7 @@ class App extends React.Component {
   }
 
   fetchData(){
+    this.setState({...this.state, load: true})
     fetch('http://localhost:5000/api/award?pageNumber=1&pageSize=20').then(response => {
       return response.json()
     }).then(data => {
@@ -53,7 +58,7 @@ class App extends React.Component {
         }
         return a.title.toLowerCase() >= b.title.toLowerCase() ? 1 : -1;    
     });
-      this.setState({...this.state, data: data.items}); 
+      this.setState({...this.state, load: false, data: data.items}); 
     })  
   }
 
@@ -76,6 +81,7 @@ class App extends React.Component {
   }
 
   sendData(data) {
+    this.setState({...this.state, load: true})
     if(this.checkElement(data)) {
       fetch('http://localhost:5000/api/award', {
         method: 'POST',
@@ -119,17 +125,13 @@ class App extends React.Component {
 
   render() {
     const popup = this.state.isPopup ? <PopupComponent callback={this.changeStatePopup} /> : null;
-    const load = this.state.load ? 
-    <div className='load'></div> : 
-    <ShoppingListComponent  
-    data={this.state.data} 
-    callback={{deleteItems: this.deleteItems, editData: this.editData, changeStateitemValue: this.changeStateitemValue}} 
-    value={this.state.itemValue}/>
+    const load = this.state.load ? <div className='load'></div> : null
     return (
       <div className='wrapper'>
         <div className='wrapper__ligth'>
           <div className='shopping'>
             <HeaderComponent />
+            
             <div className="shopping__form__container">
               <FormComponent 
               callback={this.sendData} 
@@ -141,6 +143,11 @@ class App extends React.Component {
               value={this.props.value}/>
             </div>
             {load}
+            <ShoppingListComponent  
+              load={this.state.load}
+              data={this.state.data} 
+              callback={{deleteItems: this.deleteItems, editData: this.editData, changeStateitemValue: this.changeStateitemValue}} 
+              value={this.state.itemValue}/>
             {popup}  
           </div>
         </div>
