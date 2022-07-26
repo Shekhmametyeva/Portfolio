@@ -14,9 +14,10 @@ class ShoppingItemComponent extends React.Component {
     render() {
         const isInput = this.props.isInput ? 
         <FormItemComponent 
+        data={this.props.data}
         value ={this.props.value} 
         element={{title: this.props.element.title, id: this.props.element.id}} 
-        callback={{openForm: () => this.props.onEditChange(''), editData: this.props.callback.editData, changeStateitemValue: this.props.callback.changeStateitemValue}}/> : null;
+        callback={{openForm: () => this.props.onEditChange(''), fetchData: this.props.callback.fetchData, changeStateitemValue: this.props.callback.changeStateitemValue}}/> : null;
         return (
             <div className="shopping__item" id={this.props.element.id} onDoubleClick={() => this.props.onEditChange(this.props.element.id)}>
                 <p className="shopping__text">{this.props.element.title}</p>

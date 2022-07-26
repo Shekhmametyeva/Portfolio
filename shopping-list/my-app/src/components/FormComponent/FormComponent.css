@@ -16,7 +16,7 @@
     fill: #f9b926;
 }
 .shopping__input {
-    width: 100%;
+    width: 90%;
     font-size: 1.2rem;
     font-family: Georgia, "Times New Roman", Times, serif;
     font-style: italic;
@@ -28,4 +28,9 @@
 }
 .shopping__input:focus {
     outline: none;
+}
+.loading {
+    width: 40px;
+    height: 40px;
+    background: url(../../assets/icons/load.gif) 0/cover;
 }

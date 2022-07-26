@@ -9,15 +9,11 @@ import ButtonSvgComponents from '../buttonSvgComponent/ButtonSvgComponent';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.sendData = this.sendData.bind(this);
-    this.changeStateValue = this.changeStateValue.bind(this);
-    this.changeStateitemValue = this.changeStateitemValue.bind(this);
     this.deleteItems = this.deleteItems.bind(this);
     this.changeStatePopup = this.changeStatePopup.bind(this);
-    this.editData = this.editData.bind(this)
+    this.fetchData = this.fetchData.bind(this)
     this.state = {
       data: [],
-      value: '',
       itemValue: '',
       isPopup: false,
       load: false,
@@ -31,77 +27,17 @@ class App extends React.Component {
     this.setState({...this.state, isPopup: !this.state.isPopup})
   }
 
-  changeStateitemValue(newValue) {
-    if (this.state.itemValue !== newValue) {
-      this.setState({...this.state, itemValue: newValue})
-    }
-  }
-  changeStateLoad() {
-    this.setState({...this.state, load: !this.state.load})
-    
-  }
 
-  changeStateValue(newValue) {
-    if (this.state.value !== newValue) {
-      this.setState({...this.state, value: newValue})
-    }
-  }
-
-  fetchData(){
-    this.setState({...this.state, load: true})
-    fetch('http://localhost:5000/api/award?pageNumber=1&pageSize=20').then(response => {
-      return response.json()
-    }).then(data => {
-      data.items.sort((a,b) => {
-        if (!isNaN(+a.title) && !isNaN(+b.title)) {
-            return a.title - b.title
-        }
-        return a.title.toLowerCase() >= b.title.toLowerCase() ? 1 : -1;    
+  async fetchData(){
+    const res = await fetch('http://localhost:5000/api/award?pageNumber=1&pageSize=20');
+    const data = await res.json();
+    data.items.sort((a,b) => {
+      if (!isNaN(+a.title) && !isNaN(+b.title)) {
+          return a.title - b.title
+      }
+      return a.title.toLowerCase() >= b.title.toLowerCase() ? 1 : -1;    
     });
-      this.setState({...this.state, load: false, data: data.items}); 
-    })  
-  }
-
-  checkElement(data) {
-    this.changeStateValue('');
-    this.changeStateitemValue('')
-    const match = this.state.data.find(el => el.title === data);
-    if(match) {
-      const elem = document.getElementById(match.id);
-      elem.animate([{backgroundColor: `transparent`}, {backgroundColor: `#05dcb57c`}], {
-              duration: 300,
-              iterations: 3
-      });
-      return
-    }
-    if (!data.trim()) {
-      return
-    }
-    return data
-  }
-
-  sendData(data) {
-    this.setState({...this.state, load: true})
-    if(this.checkElement(data)) {
-      fetch('http://localhost:5000/api/award', {
-        method: 'POST',
-        body: JSON.stringify({title: data}),
-      }).then(() => {
-        
-        this.fetchData();
-      })
-    }  
-  }
-
-  editData(id, data) {
-    if(this.checkElement(data)) {
-      fetch(`http://localhost:5000/api/award/${id}`, {
-        method: 'PUT',
-        body: JSON.stringify({title: data}),
-    }).then(() => {
-      this.fetchData()
-    })
-    }  
+    this.setState({...this.state, data: data.items, load: false}); 
   }
 
   deleteItems(data) {
@@ -134,9 +70,9 @@ class App extends React.Component {
             
             <div className="shopping__form__container">
               <FormComponent 
-              callback={this.sendData} 
-              changeStateValue={this.changeStateValue} 
-              value={this.state.value}/>
+              fetchData={this.fetchData} 
+              data={this.state.data}/>
+              
               <ButtonSvgComponents 
               name='delete' 
               callback={this.changeStatePopup} 
@@ -146,7 +82,7 @@ class App extends React.Component {
             <ShoppingListComponent  
               load={this.state.load}
               data={this.state.data} 
-              callback={{deleteItems: this.deleteItems, editData: this.editData, changeStateitemValue: this.changeStateitemValue}} 
+              callback={{deleteItems: this.deleteItems, fetchData: this.fetchData}} 
               value={this.state.itemValue}/>
             {popup}  
           </div>

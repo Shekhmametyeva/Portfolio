@@ -19,9 +19,10 @@ class ShoppingListComponent extends React.Component {
             <div className='shopping__list'>
                 {this.props.data.map(el => <ShoppingItemComponent 
                     isInput={this.state.editedItemId === el.id}
-                    onEditChange={id => this.setState({...this.state, editedItemId: id})} 
+                    onEditChange={(value) => this.setState({...this.state, editedItemId: value})} 
                     element={el} key={el.id} 
                     callback={this.props.callback} 
+                    data={this.props.data}
                     value={this.props.value}/>)}
             </div>
         )
