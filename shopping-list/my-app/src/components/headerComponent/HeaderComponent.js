@@ -9,7 +9,7 @@ class HeaderComponent extends React.Component {
             <div className='shopping__header'>
                 <img src={icon} className='shopping__logo' alt='logo' />
                 <h1 className='shopping__title'>Список покупок</h1>
-                <ButtonSvgComponents name={'user'} />
+                <ButtonSvgComponents name='user' />
             </div>
         )
     }

@@ -1,7 +1,31 @@
+// избавиться от document. window.
+// enter (onkeydawn - элементу)
+// сделать самостоятельное закрытие попапа (задать стейт)
+// избавиться от фигурных скобок, если передается строка
+// колбеки разобрать на отдельные пропсы
+// переименовать инпут форм
+// сделать попад для удаления отдельных элементов
+// при редактировании удалить плейсхолдер, заменить на то же валью
+// вместо BIND делать всё через лямбды
+// проверить все setState на ... this.state
+// локализировать стейты (value - можно сделать в ипуте и передавать через sendData)
+// вызывать HTTP методы сохранения, изменения, удаления в компонентах, а после через колбэк вызывать fetchData родителя
+// Алгоритм подсветки уже существующего элемента при добавлении:
+// 1. Добавляешь колбэк onSubmit в форму. Активируешь его при отправке (нажатии на кнопку)
+// 2. В колбэке проверяешь, есть ли этот элемент
+// 3. Если есть, то задаёшь глобальный state (this.setState({...this.state, highlightedItemId: foundId}))
+// 4. Передаёшь в ShoppingList, а затем в ShoppingListItem с id = highlightedItemId пропс, чтобы он подстветился, и колбэк, чтобы обнулить потом highlightedItemId
+// 5. Когда подстветка закончится (анимация 20 сек) вызываешь колбек на обнуление
+
+
+
+
+app
+
 import './App.css';
 import React from 'react';
 import HeaderComponent from '../headerComponent/HeaderComponent';
-import FormComponent from '../FormComponent/FormComponent';
+import FormComponent from '../inputComponent/InputComponent';
 import ShoppingListComponent from '../shoppingListComponent/ShoppingListComponent';
 import PopupComponent from '../popupComponent/PopupComponent';
 import ButtonSvgComponents from '../buttonSvgComponent/ButtonSvgComponent';
@@ -20,22 +44,10 @@ class App extends React.Component {
       value: '',
       itemValue: '',
       isPopup: false,
-      load: false,
+      load: true,
     };
 
-    window.addEventListener('keydown', (event) => {
-      console.log('eror')
-      if(event.key === 'Enter') {
-        if(document.activeElement.classList[0] === 'shopping__input') {
-          this.sendData(this.state.value);
-          return
-        }
-        if(this.state.isPopup) {
-          this.changeStatePopup(this.state.isPopup)
-        }
-      }
-      
-  })
+    
   }
 
   changeStatePopup(value) {
@@ -58,6 +70,7 @@ class App extends React.Component {
   }
 
   fetchData(){
+    this.setState({...this.state, load: true})
     fetch('http://localhost:5000/api/award?pageNumber=1&pageSize=20').then(response => {
       return response.json()
     }).then(data => {
@@ -67,7 +80,7 @@ class App extends React.Component {
         }
         return a.title.toLowerCase() >= b.title.toLowerCase() ? 1 : -1;    
     });
-      this.setState({data: data.items}); 
+      this.setState({...this.state, load: false, data: data.items}); 
     })  
   }
 
@@ -90,6 +103,7 @@ class App extends React.Component {
   }
 
   sendData(data) {
+    this.setState({...this.state, load: true})
     if(this.checkElement(data)) {
       fetch('http://localhost:5000/api/award', {
         method: 'POST',
@@ -134,27 +148,22 @@ class App extends React.Component {
   render() {
     const popup = this.state.isPopup ? <PopupComponent callback={this.changeStatePopup} /> : null;
     const load = this.state.load ? 
-    <div className='load'></div> : 
-    <ShoppingListComponent  
-    data={this.state.data} 
-    callback={{deleteItems: this.deleteItems, editData: this.editData, changeStateitemValue: this.changeStateitemValue}} 
-    value={this.state.itemValue}/>
+    <div className='load'>Loading...</div> : null
+    
     return (
       <div className='wrapper'>
         <div className='wrapper__ligth'>
           <div className='shopping'>
             <HeaderComponent />
             <div className="shopping__form__container">
-              <FormComponent 
-              callback={this.sendData} 
-              changeStateValue={this.changeStateValue} 
-              value={this.state.value}/>
-              <ButtonSvgComponents 
-              name='delete' 
-              callback={this.changeStatePopup} 
-              value={this.props.value}/>
+              <FormComponent callback={this.sendData} changeStateValue={this.changeStateValue} value={this.state.value}/>
+              <ButtonSvgComponents name={'delete'} callback={this.changeStatePopup} value={this.props.value}/>
             </div>
             {load}
+            <ShoppingListComponent  
+              data={this.state.data} 
+              callback={{deleteItems: this.deleteItems, editData: this.editData, changeStateitemValue: this.changeStateitemValue}} 
+              value={this.state.itemValue}/>
             {popup}  
           </div>
         </div>
@@ -165,3 +174,7 @@ class App extends React.Component {
 
 
 export default App;
+
+
+
+
