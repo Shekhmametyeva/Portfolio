@@ -20,7 +20,7 @@ class PopupComponent extends React.Component {
     }
 
     handleReset() {
-        this.props.callback()
+        this.props.changeStatePopup()
     }
 
     

@@ -5,44 +5,29 @@ import FormComponent from '../FormComponent/FormComponent';
 import ShoppingListComponent from '../shoppingListComponent/ShoppingListComponent';
 import PopupComponent from '../popupComponent/PopupComponent';
 import ButtonSvgComponents from '../buttonSvgComponent/ButtonSvgComponent';
+import {sort} from '../../api/api'
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.changeStatePopup = this.changeStatePopup.bind(this);
     this.fetchData = this.fetchData.bind(this)
     this.state = {
       data: [],
-      itemValue: '',
       isPopup: false,
       load: true,
     };
   }
 
-  changeStatePopup() {
-    this.setState({...this.state, isPopup: !this.state.isPopup});
-  }
-
-
   async fetchData(){
     const res = await fetch('http://localhost:5000/api/award?pageNumber=1&pageSize=20');
-    const data = await res.json();
-    data.items.sort((a,b) => {
-      if (!isNaN(+a.title) && !isNaN(+b.title)) {
-          return a.title - b.title
-      }
-      return a.title.toLowerCase() >= b.title.toLowerCase() ? 1 : -1;    
-    });
-    this.setState({...this.state, data: data.items, load: false}); 
+    const json = await res.json();
+    const data = sort(json.items)
+    this.setState({...this.state, data: data, load: false}); 
   }
-
-  
-  
 
   componentDidMount() {
     this.fetchData();
   }
-
 
   render() {
     const load = this.state.load ? 
@@ -50,8 +35,9 @@ class App extends React.Component {
     <ShoppingListComponent  
     load={this.state.load}
     data={this.state.data} 
-    callback={{deleteItems: this.deleteItems, fetchData: this.fetchData}} 
-    value={this.state.itemValue}/>
+    deleteItems={this.deleteItems}
+    fetchData={this.fetchData}
+    />
     return (
       <div className='wrapper'>
         <div className='wrapper__ligth'>
@@ -64,14 +50,14 @@ class App extends React.Component {
               <ButtonSvgComponents 
               disabled={!this.state.data.length}
               name='delete' 
-              callback={this.changeStatePopup}/>
+              callback={() => this.setState({...this.state, isPopup: !this.state.isPopup})}/>
             </div>
             {load}
             <PopupComponent
             data={this.state.data} 
-            isPopup={this.state.isPopup}  
-            callback={this.changeStatePopup} 
-            fetchData={this.fetchData} />  
+            isPopup={this.state.isPopup}
+            fetchData={this.fetchData} 
+            changeStatePopup={() => this.setState({...this.state, isPopup: !this.state.isPopup})}/>  
           </div>
         </div>
       </div>

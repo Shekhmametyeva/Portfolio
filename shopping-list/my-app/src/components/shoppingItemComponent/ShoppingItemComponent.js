@@ -16,9 +16,10 @@ class ShoppingItemComponent extends React.Component {
         const isInput = this.props.isInput ? 
         <FormItemComponent 
         data={this.props.data}
-        value ={this.props.value} 
         element={{title: this.props.element.title, id: this.props.element.id}} 
-        callback={{openForm: () => this.props.onEditChange(''), fetchData: this.props.callback.fetchData }}/> : null;
+        onEditChange={() => this.props.onEditChange('')} 
+        fetchData={this.props.fetchData} /> :
+        null;
         return (
             <div className="shopping__item" id={this.props.element.id} onDoubleClick={() => this.props.onEditChange(this.props.element.id)}>
                 <p className="shopping__text">{this.props.element.title}</p>
@@ -31,9 +32,8 @@ class ShoppingItemComponent extends React.Component {
                 class='shopping__icon' 
                 callback={() => {
                     deleteItems([this.props.element]).then(() => {
-                        this.props.callback.fetchData()
-                    })
-                    
+                        this.props.fetchData()
+                    })    
                 }} 
                 value={[this.props.element]}/>             
                 {isInput}

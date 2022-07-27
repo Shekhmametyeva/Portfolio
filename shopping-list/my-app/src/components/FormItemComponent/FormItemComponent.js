@@ -26,7 +26,9 @@ class FormItemComponent extends React.Component {
         }   
     }
     render() {
-        const button = this.state.load ? <div className='loading'></div> : <ButtonSvgComponents type='submit' name='add' class='shopping__icon' /> ;
+        const button = this.state.load ? 
+        <div className='loading'></div> : 
+        <ButtonSvgComponents type='submit' name='add' class='shopping__icon' /> ;
         return(
             <form className="shopping__form shopping__item__form" onSubmit={(event) => this.handleSubmit(event)}>
                 <input 
