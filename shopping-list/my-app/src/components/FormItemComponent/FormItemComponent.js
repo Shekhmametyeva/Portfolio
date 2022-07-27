@@ -7,7 +7,6 @@ import { checkElement } from '../../api/api';
 class FormItemComponent extends React.Component {
     constructor(props) {
         super(props);
-        this.editData = this.editData.bind(this);
         this.state = {
             value: '',
             load: false,
