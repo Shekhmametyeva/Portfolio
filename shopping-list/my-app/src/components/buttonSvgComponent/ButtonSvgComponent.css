@@ -4,6 +4,15 @@
     cursor: pointer;
     padding: 0 10px;
 }
+.button:disabled:hover{
+    cursor: default;
+}
+.button:disabled .icon{
+    fill: #959595;
+}
+.button:disabled:hover .icon{
+    fill: #959595;
+}
 .icon {
     width: 30px;
     height: 45px;

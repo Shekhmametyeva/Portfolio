@@ -28,7 +28,7 @@
   border: 5px solid rgb(5, 220, 180);
   border-radius: 16px;
 }
-.shopping__form__container {
+.shopping__container {
   width: 90%;
   display: flex;
   align-items: center;
