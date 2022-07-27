@@ -1,14 +1,4 @@
-/* export const deleteAward = (id) => {
-    fetch('');
-}
 
-export const deleteAwards = ids => {
-    ids.map()
-}
-
-import { deleteAward } from '../../api/api';
-
- */
 export const checkElement = (value, data) => {
     const match = data.find(el => el.title === value);
     if(match) {
@@ -24,3 +14,11 @@ export const checkElement = (value, data) => {
     }
     return value
   }
+
+
+export const deleteItems = (data) => {
+  console.log(data)
+    return Promise.all(data.map((el) => fetch(`http://localhost:5000/api/award/${el.id}`, {
+        method: 'DELETE',
+    })))
+}

@@ -2,6 +2,7 @@ import './ShoppingItemComponent.css';
 import React from 'react';
 import ButtonSvgComponents from '../buttonSvgComponent/ButtonSvgComponent';
 import FormItemComponent from '../FormItemComponent/FormItemComponent';
+import { deleteItems } from '../../api/api';
 
 class ShoppingItemComponent extends React.Component {
     constructor(props) {
@@ -28,7 +29,12 @@ class ShoppingItemComponent extends React.Component {
                 <ButtonSvgComponents 
                 name='delete' 
                 class='shopping__icon' 
-                callback={this.props.callback.deleteItems} 
+                callback={() => {
+                    deleteItems([this.props.element]).then(() => {
+                        this.props.callback.fetchData()
+                    })
+                    
+                }} 
                 value={[this.props.element]}/>             
                 {isInput}
             </div>

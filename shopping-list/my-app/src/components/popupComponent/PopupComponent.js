@@ -1,6 +1,7 @@
 import './PopupComponent.css';
 import React from 'react';
 import ButtonSvgComponent from '../buttonSvgComponent/ButtonSvgComponent'
+import { deleteItems } from '../../api/api';
 
 class PopupComponent extends React.Component {
     constructor(props) {
@@ -11,7 +12,7 @@ class PopupComponent extends React.Component {
     }
     handleSubmit() {
         this.setState({...this.state, load: true})
-        this.deleteItems(this.props.data).then(() => {
+        deleteItems(this.props.data).then(() => {
             this.props.fetchData()}).then(() => {
                 this.setState({...this.state, load: false})
                 this.handleReset()
@@ -22,11 +23,7 @@ class PopupComponent extends React.Component {
         this.props.callback()
     }
 
-    deleteItems(data) {
-        return Promise.all(data.map((el) => fetch(`http://localhost:5000/api/award/${el.id}`, {
-            method: 'DELETE',
-        })))
-    }
+    
 
 
     render() {
