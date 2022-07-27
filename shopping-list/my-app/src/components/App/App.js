@@ -64,11 +64,14 @@ class App extends React.Component {
               <ButtonSvgComponents 
               disabled={!this.state.data.length}
               name='delete' 
-              callback={this.changeStatePopup} 
-              value={this.props.value}/>
+              callback={this.changeStatePopup}/>
             </div>
             {load}
-            <PopupComponent data={this.state.data} isPopup={this.state.isPopup}  callback={this.changeStatePopup} fetchData={this.fetchData} />  
+            <PopupComponent
+            data={this.state.data} 
+            isPopup={this.state.isPopup}  
+            callback={this.changeStatePopup} 
+            fetchData={this.fetchData} />  
           </div>
         </div>
       </div>
