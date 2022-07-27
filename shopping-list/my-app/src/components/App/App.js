@@ -10,7 +10,6 @@ import {sort} from '../../api/api'
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.fetchData = this.fetchData.bind(this)
     this.state = {
       data: [],
       isPopup: false,
@@ -36,7 +35,7 @@ class App extends React.Component {
     load={this.state.load}
     data={this.state.data} 
     deleteItems={this.deleteItems}
-    fetchData={this.fetchData}
+    fetchData={() => this.fetchData()}
     />
     return (
       <div className='wrapper'>
@@ -45,7 +44,7 @@ class App extends React.Component {
             <HeaderComponent />
             <div className="shopping__container">
               <FormComponent 
-              fetchData={this.fetchData} 
+              fetchData={() => this.fetchData()} 
               data={this.state.data}/>
               <ButtonSvgComponents 
               disabled={!this.state.data.length}
@@ -56,7 +55,7 @@ class App extends React.Component {
             <PopupComponent
             data={this.state.data} 
             isPopup={this.state.isPopup}
-            fetchData={this.fetchData} 
+            fetchData={() => this.fetchData()} 
             changeStatePopup={() => this.setState({...this.state, isPopup: !this.state.isPopup})}/>  
           </div>
         </div>
