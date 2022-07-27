@@ -1,7 +1,7 @@
 import './FormItemComponent.css';
 import React from 'react';
 import ButtonSvgComponents from '../buttonSvgComponent/ButtonSvgComponent';
-import { checkElement } from '../../api/api';
+import { editData } from '../../api/api';
 
 
 class FormItemComponent extends React.Component {
@@ -12,23 +12,17 @@ class FormItemComponent extends React.Component {
             load: false,
         }
     }
-    async editData(id, value, data) {
-        if(checkElement(value, data)) {
-            this.setState({...this.state, load: true})
-            await fetch(`http://localhost:5000/api/award/${id}`, {
-                method: 'PUT',
-                body: JSON.stringify({title: value}),
-            });
-            await this.props.callback.fetchData();
-            this.setState({...this.state, value: '', load: false})
-        }  
-    }
+    
     handleSubmit(event){
         event.preventDefault();
         if(!this.state.load) {
-            this.editData(this.props.element.id, this.state.value, this.props.data).then(() => {
-                this.props.callback.openForm()
-            })
+            this.setState({...this.state, load: true});
+            editData(this.props.element.id, this.state.value, this.props.data).then(() => {
+                this.props.fetchData()
+            }).then(() => {
+                this.props.onEditChange();
+                this.setState({...this.state, value: '', load: false});
+            })    
         }   
     }
     render() {
@@ -43,7 +37,7 @@ class FormItemComponent extends React.Component {
                 className='shopping__input' 
                 onChange={(event) => {this.setState({...this.state, value: event.target.value})}}/>
                 {button}
-                <ButtonSvgComponents name='add' class='close shopping__icon' callback={this.props.callback.openInput}/>
+                <ButtonSvgComponents name='add' class='close shopping__icon' callback={this.props.onEditChange}/>
             </form>
         )
     }
