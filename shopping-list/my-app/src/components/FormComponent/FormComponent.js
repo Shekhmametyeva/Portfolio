@@ -1,7 +1,7 @@
 import './FormComponent.css';
 import React from 'react';
 import ButtonSvgComponents from '../buttonSvgComponent/ButtonSvgComponent';
-import { checkElement } from '../../api/api';
+import { sendData } from '../../api/api';
 
 class FormComponent extends React.Component {
     constructor(props) {
@@ -11,24 +11,17 @@ class FormComponent extends React.Component {
             load: false,
         }
     }
-    sendData(value, data) {
-        if(checkElement(value, data)) {
-        this.setState({...this.state, load: true})
-          fetch('http://localhost:5000/api/award', {
-            method: 'POST',
-            body: JSON.stringify({title: value}),
-          }).then(() => {
-            this.props.fetchData().then(() => {
-                this.setState({...this.state, value: '', load: false})
-            });
-            
-          })
-        }  
-    }
+    
     handleSubmit(event){
         event.preventDefault();
         if(!this.state.load) {
-            this.sendData(this.state.value, this.props.data)
+            this.setState({...this.state, load: true});
+            sendData(this.state.value, this.props.data).then(() => {
+                this.props.fetchData().then(() => {
+                    this.setState({...this.state, value: '', load: false})
+                });
+                
+              })
         }
     }
     render() {

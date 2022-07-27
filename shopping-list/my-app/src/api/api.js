@@ -25,6 +25,15 @@ export const editData = async (id, value, data) => {
   }  
 }
 
+export const sendData = async(value, data) => {
+  if(checkElement(value, data)) {
+    await fetch('http://localhost:5000/api/award', {
+      method: 'POST',
+      body: JSON.stringify({title: value}),
+    })
+  }  
+}
+
 export const deleteItems = (data) => {
   console.log(data)
     return Promise.all(data.map((el) => fetch(`http://localhost:5000/api/award/${el.id}`, {
