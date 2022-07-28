@@ -10,7 +10,7 @@ class ShoppingListComponent extends React.Component {
         }
     }
     render() {
-        if(!this.props.data.length && !this.props.load) {
+        if(!this.props.data.length) {
             return(
                 <h1 className='shopping__empty'>Список пуст</h1>
             )
