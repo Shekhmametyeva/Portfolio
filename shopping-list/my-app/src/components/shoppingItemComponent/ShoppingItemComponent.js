@@ -8,7 +8,7 @@ class ShoppingItemComponent extends React.Component {
     constructor(props) {
         super(props);
         this.state ={
-            isInput: false,
+            load: false,
         }
     }
     
@@ -20,6 +20,21 @@ class ShoppingItemComponent extends React.Component {
         onEditChange={() => this.props.onEditChange('')} 
         fetchData={this.props.fetchData} /> :
         null;
+        const button = this.state.load ? 
+        <div className='loading'></div> : 
+        <ButtonSvgComponents 
+            name='delete' 
+            class='shopping__icon' 
+            callback={() => {
+                this.setState({...this.state, load: true,})
+                deleteItems([this.props.element]).then(() => {
+                    this.props.fetchData();
+                }).then(() => {
+                    this.setState({...this.state, load: false,})
+                })
+            }} 
+            value={[this.props.element]}
+        /> ;
         return (
             <div className="shopping__item" id={this.props.element.id} onDoubleClick={() => this.props.onEditChange(this.props.element.id)}>
                 <p className="shopping__text">{this.props.element.title}</p>
@@ -27,15 +42,7 @@ class ShoppingItemComponent extends React.Component {
                 name='edit' 
                 class='shopping__icon'
                 callback={() => this.props.onEditChange(this.props.element.id)}/>
-                <ButtonSvgComponents 
-                name='delete' 
-                class='shopping__icon' 
-                callback={() => {
-                    deleteItems([this.props.element]).then(() => {
-                        this.props.fetchData()
-                    })    
-                }} 
-                value={[this.props.element]}/>             
+                {button}        
                 {isInput}
             </div>
         )
