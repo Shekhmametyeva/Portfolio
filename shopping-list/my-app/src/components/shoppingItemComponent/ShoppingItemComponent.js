@@ -17,6 +17,7 @@ class ShoppingItemComponent extends React.Component {
         <FormItemComponent 
         data={this.props.data}
         element={{title: this.props.element.title, id: this.props.element.id}} 
+        changeHighlighted={this.props.changeHighlighted}
         onEditChange={() => this.props.onEditChange('')} 
         fetchData={this.props.fetchData} /> :
         null;
@@ -35,8 +36,10 @@ class ShoppingItemComponent extends React.Component {
             }} 
             value={[this.props.element]}
         /> ;
+        const classItemLog = this.props.highlightedItemId === this.props.element.id ? "shopping__item animation" : 'shopping__item';
+
         return (
-            <div className="shopping__item" id={this.props.element.id} onDoubleClick={() => this.props.onEditChange(this.props.element.id)}>
+            <div className={classItemLog} onAnimationEnd={() => {this.props.changeHighlighted('')}} id={this.props.element.id} onDoubleClick={() => this.props.onEditChange(this.props.element.id)}>
                 <p className="shopping__text">{this.props.element.title}</p>
                 <ButtonSvgComponents 
                 name='edit' 

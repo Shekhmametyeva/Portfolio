@@ -14,6 +14,7 @@ class App extends React.Component {
       data: [],
       isPopup: false,
       load: true,
+      highlightedItemId: ''
     };
   }
 
@@ -32,6 +33,8 @@ class App extends React.Component {
     const load = this.state.load ? 
     <div className='load'></div> : 
     <ShoppingListComponent  
+    highlightedItemId={this.state.highlightedItemId}
+    changeHighlighted ={(foundId) => this.setState({...this.state, highlightedItemId: foundId})}
     load={this.state.load}
     data={this.state.data} 
     deleteItems={this.deleteItems}
@@ -45,6 +48,7 @@ class App extends React.Component {
             <div className="shopping__container">
               <FormComponent 
               fetchData={() => this.fetchData()} 
+              changeHighlighted ={(foundId) => this.setState({...this.state, highlightedItemId: foundId})}
               data={this.state.data}/>
               <ButtonSvgComponents 
               disabled={!this.state.data.length}

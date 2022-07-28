@@ -16,7 +16,7 @@ class FormComponent extends React.Component {
         event.preventDefault();
         if(!this.state.load) {
             this.setState({...this.state, load: true});
-            sendData(this.state.value, this.props.data).then(() => {
+            sendData(this.state.value, this.props.data, this.props.changeHighlighted).then(() => {
                 this.props.fetchData().then(() => {
                     this.setState({...this.state, value: '', load: false})
                 });

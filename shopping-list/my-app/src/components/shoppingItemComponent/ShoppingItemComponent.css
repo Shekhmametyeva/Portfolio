@@ -16,3 +16,18 @@
     font-size: 1.2rem;
     line-height: 45px;
 }
+
+.animation {
+    animation-name: highlighted; 
+    animation-duration: 0.2s;
+    animation-iteration-count: 5;
+}
+@keyframes highlighted {
+    from {
+        background-color: transparent;
+    }
+  
+    to {
+        background-color: #05dcb57c;
+    }
+}

@@ -17,7 +17,7 @@ class FormItemComponent extends React.Component {
         event.preventDefault();
         if(!this.state.load) {
             this.setState({...this.state, load: true});
-            editData(this.props.element.id, this.state.value, this.props.data).then(() => {
+            editData(this.props.element.id, this.state.value, this.props.data, this.props.changeHighlighted).then(() => {
                 this.props.fetchData()
             }).then(() => {
                 this.props.onEditChange();
