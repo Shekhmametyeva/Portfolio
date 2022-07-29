@@ -37,8 +37,8 @@ class App extends React.Component {
   }
 
   render() {
-    const load = this.state.data 
-    ? this.state.load 
+
+    const load = this.state.load 
     ? <div className='load'></div> 
     : (<ShoppingListComponent  
           highlightedItemId={this.state.highlightedItemId}
@@ -46,31 +46,39 @@ class App extends React.Component {
           data={this.state.data} 
           deleteItems={this.deleteItems}
           fetchData={() => this.fetchData()}
-      />) 
-      : <div>Сервер не работает</div> ; 
+      />);
 
-    return (
-      <div className='wrapper'>
-        <div className='wrapper__ligth'>
-          <div className='shopping'>
-            <HeaderComponent />
-            <div className="shopping__container">
-              <FormComponent 
-                  fetchData={() => this.fetchData()} 
-                  changeHighlighted ={(foundId) => this.setState({...this.state, highlightedItemId: foundId})}
-                  data={this.state.data} />
-              <ButtonSvgComponents 
-                  disabled={this.state.data && !this.state.data.length}
-                  name='delete' 
-                  callback={() => this.setState({...this.state, isPopup: !this.state.isPopup})}/>
-            </div>
+
+    const isServer = this.state.data 
+    ? ( <div className='shopping'>
+          <HeaderComponent />
+          <div className="shopping__container">
+            <FormComponent 
+                fetchData={() => this.fetchData()} 
+                changeHighlighted ={(foundId) => this.setState({...this.state, highlightedItemId: foundId})}
+                data={this.state.data} />
+            <ButtonSvgComponents 
+                disabled={!this.state.data.length}
+                name='delete' 
+                callback={() => this.setState({...this.state, isPopup: !this.state.isPopup})}/>
+          </div>
             {load}
             <PopupComponent
                 data={this.state.data} 
                 isPopup={this.state.isPopup}
                 fetchData={() => this.fetchData()} 
                 changeStatePopup={() => this.setState({...this.state, isPopup: !this.state.isPopup})}/>  
-          </div>
+        </div> )
+    : <div className='noServer'>Сервер не работает</div>;
+
+
+
+     
+
+    return (
+      <div className='wrapper'>
+        <div className='wrapper__ligth'>
+            {isServer}
         </div>
       </div>
     )

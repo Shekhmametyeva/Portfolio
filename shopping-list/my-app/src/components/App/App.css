@@ -39,3 +39,6 @@
   min-height: 100px;
   background: url(../../assets/icons/load.gif) 0/cover;
 }
+.noServer {
+  font-size: 2rem;
+}
