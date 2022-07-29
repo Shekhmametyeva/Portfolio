@@ -19,11 +19,17 @@ class App extends React.Component {
   }
 
   async fetchData() {
-    this.setState({...this.state, load: true});
-    const res = await fetch('http://localhost:5000/api/award?pageNumber=1&pageSize=20');
-    const json = await res.json();
-    const data = sort(json.items)
-    this.setState({...this.state, data: data, load: false}); 
+    try {
+      this.setState({...this.state, load: true});
+      const res = await fetch('http://localhost:5000/api/award?pageNumber=1&pageSize=20');
+      const json = await res.json();
+      const data = sort(json.items)
+      this.setState({...this.state, data: data, load: false}); 
+    } catch {
+      console.log('Сервер не работает');
+      this.setState({...this.state, data: null, load: false}); 
+    } 
+    
   }
 
   componentDidMount() {
@@ -31,7 +37,8 @@ class App extends React.Component {
   }
 
   render() {
-    const load = this.state.load 
+    const load = this.state.data 
+    ? this.state.load 
     ? <div className='load'></div> 
     : (<ShoppingListComponent  
           highlightedItemId={this.state.highlightedItemId}
@@ -39,7 +46,8 @@ class App extends React.Component {
           data={this.state.data} 
           deleteItems={this.deleteItems}
           fetchData={() => this.fetchData()}
-      />);
+      />) 
+      : <div>Сервер не работает</div> ; 
 
     return (
       <div className='wrapper'>
@@ -52,7 +60,7 @@ class App extends React.Component {
                   changeHighlighted ={(foundId) => this.setState({...this.state, highlightedItemId: foundId})}
                   data={this.state.data} />
               <ButtonSvgComponents 
-                  disabled={!this.state.data.length}
+                  disabled={this.state.data && !this.state.data.length}
                   name='delete' 
                   callback={() => this.setState({...this.state, isPopup: !this.state.isPopup})}/>
             </div>
