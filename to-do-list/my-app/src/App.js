@@ -1,8 +1,14 @@
 import './App.css';
+import FormComponent from './components/FormComponent/FormComponent';
+
 
 function App() {
   return (
-    <div>Привет</div>
+    <div className='wrapper'>
+      <div className='todo'>
+        <FormComponent />
+      </div>
+    </div>
   );
 }
 

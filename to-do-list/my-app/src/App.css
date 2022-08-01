@@ -1,0 +1,13 @@
+.wrapper {
+    height: 100vh;
+    margin: 0 auto;
+    background: url(./assets/images/bg.jpg) center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.todo {
+    width: 700px;
+    min-height: 500px;
+    padding: 20px;
+}
