@@ -1,10 +1,11 @@
 import './ButtonSvgComponent.css'
 import iconsSVG from '../../assets/icons/sprite.svg';
 
+
 function ButtonSvgComponent (props) {
     return (
-        <button className='button' type={props.type}>
-            <svg width='50' height='50'>
+        <button className={props.class ? `button ${props.class}` : `button`} type={props.type}>
+            <svg className={props.class ? 'todo__icon' : 'icon'}>
                 <use xlinkHref={`${iconsSVG}#${props.name}`} />
             </svg>
         </button>
