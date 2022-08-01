@@ -1,0 +1,22 @@
+.todo__form {
+    width: 100%;
+    padding: 10px 20px;
+    display: flex;
+    background-color: #eee;
+    border-radius: 16px;
+    border: 2px solid transparent;
+}
+.todo__form:focus-within {
+    border: 2px solid #016801;
+}
+
+.todo__input {
+    flex-grow: 1;
+    padding: 0 20px;
+    font-size: 1.5rem;
+    border: none;
+    background-color: transparent;
+}
+.todo__input:focus {
+    outline: none;
+}
