@@ -1,0 +1,8 @@
+.button {
+    border: none;
+    height: 50px;
+    cursor: pointer;
+}
+.button:hover svg {
+    fill: #016801;
+}
