@@ -1,24 +1,23 @@
 import './ToDoItemComponent.css';
 import ButtonSvgComponent from '../ButtonSvgComponent/ButtonSvgComponent';
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 
 function ToDoItemComponent (props) {
-    const [done, setDone] = useState(false);
-    if(done) {
+    const [lift, setLift] = useState(false)
+    if(props.complite) {
         return (
-            <div className={done ? 'todo__item done' : 'todo__item'} >
+            <div className='todo__item done' >
                 <h5 className='todo__text'>{props.element}</h5>
             </div>
         )
     }
     return (
-        <div className={done ? 'todo__item done' : 'todo__item'} >
+        <div className={lift ? 'todo__item close' : 'todo__item'} >
             <h5 className='todo__text'>{props.element}</h5>
             <ButtonSvgComponent 
-                callback={() => setDone(true)}
-                name='done' 
-                class='todo__button' 
-                
+                callback={() => {props.updateStateData(props.index, props.element)}}
+                name='complete' 
+                class='todo__button'   
             />
         </div>
         

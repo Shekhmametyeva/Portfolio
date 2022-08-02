@@ -22,7 +22,7 @@ function FormComponent (props) {
             onSubmit={(event) => {
                 event.preventDefault();
                 if(checkValidity (props, value)) {
-                    props.updateState(value)
+                    props.updateStateValue(value)
                 }
                 setValue('')
             }}> 
