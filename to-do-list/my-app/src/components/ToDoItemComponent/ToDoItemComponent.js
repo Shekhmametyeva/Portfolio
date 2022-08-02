@@ -1,9 +1,7 @@
 import './ToDoItemComponent.css';
 import ButtonSvgComponent from '../ButtonSvgComponent/ButtonSvgComponent';
-import React, {useState} from 'react';
 
 function ToDoItemComponent (props) {
-    const [lift, setLift] = useState(false)
     if(props.complite) {
         return (
             <div className='todo__item done' >
@@ -12,7 +10,7 @@ function ToDoItemComponent (props) {
         )
     }
     return (
-        <div className={lift ? 'todo__item close' : 'todo__item'} >
+        <div className='todo__item' >
             <h5 className='todo__text'>{props.element}</h5>
             <ButtonSvgComponent 
                 callback={() => {props.updateStateData(props.index, props.element)}}
