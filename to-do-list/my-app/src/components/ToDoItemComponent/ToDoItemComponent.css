@@ -15,3 +15,30 @@
     font-size: 1.25rem;
     font-weight: 400;
 }
+.done {
+    background-color: #c3c3c3;
+    color: #9b9a9a;
+    position: relative;
+    padding-right: 60px;
+}
+.done::before {
+    content: '';
+    width: 100%;
+    height: 2px;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    background-color: #787878;
+    animation: done 1s forwards;
+    
+}
+@keyframes done {
+    from {
+        transform-origin:  0% 50%;
+        transform:scaleX(0);
+    }
+    to {
+        transform-origin:  0% 50%;
+        transform:scaleX(1);
+    }
+}
