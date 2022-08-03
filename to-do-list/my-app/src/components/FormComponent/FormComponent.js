@@ -2,38 +2,56 @@ import './FormComponent.css';
 import ButtonSvgComponent from '../ButtonSvgComponent/ButtonSvgComponent';
 import React, { useState } from 'react';
 
-function checkValidity (props, value) {
+function checkValidity (props, value, setValue, setValid) {
     if(!value.trim()) {
-        console.log('пустой')
+        setValid('поле не заполнено')
+        setTimeout(() => {
+            setValid(false)
+        }, 1500);
         return null
     }
-    if(props.data.find(el => el === value)) {
-        console.log('уже есть')
+    if(props.data.find(el => el.value === value.trim())) {
+        setValid('Такая задача уже есть в списке')
+        props.highlight(value)
+        setTimeout(() => {
+            setValue()
+            setValid(false)
+        }, 1500);
         return null
     }
-    return value
+    setValue()
+    return value.trim()
 }
 
 
 function FormComponent (props) {
     const [value, setValue] = useState('');
+    const [valid, setValid] = useState(false);
+    const prompt = valid ? <p className='valid'>{valid}</p> : null
     return (
         <form className='todo__form' 
             onSubmit={(event) => {
                 event.preventDefault();
-                if(checkValidity (props, value)) {
-                    props.updateStateValue(value)
+                const newValue = checkValidity(props, value, () => setValue(''), (text)=> setValid(text));
+                if (newValue) {
+                    props.updateStateValue(newValue)
                 }
-                setValue('')
+                
             }}> 
-            <input 
-                type='text' 
-                placeholder='Что добавим в список задач?' 
-                value={value} 
-                className='todo__input' 
-                onChange={(event) => setValue(event.target.value)}
-            />
-            <ButtonSvgComponent name='add' type='submit'/>
+            <div className='input__container'>
+                <input
+                    readOnly={valid}
+                    type='text' 
+                    placeholder='Что добавим в список задач?' 
+                    value={value} 
+                    className='todo__input' 
+                    onChange={(event) => {
+                        setValue(event.target.value)
+                    }}
+                />
+                <ButtonSvgComponent name='add' type='submit' disabled={valid}/>
+            </div>
+            {prompt}
         </form>
     )
 }

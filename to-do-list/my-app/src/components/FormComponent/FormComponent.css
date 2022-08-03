@@ -1,22 +1,29 @@
 .todo__form {
     width: 100%;
     padding: 10px 20px;
-    display: flex;
     background-color: #eee;
     border-radius: 16px;
     border: 2px solid transparent;
 }
 .todo__form:focus-within {
-    border: 2px solid #016801;
+    outline: 2px solid #fff;
+    border: 3px solid #016801;
 }
-
-.todo__input {
+.input__container {
     flex-grow: 1;
-    padding: 0 20px;
+    display: flex;
+}
+.todo__input {
+    width: 100%;
     font-size: 1.5rem;
     border: none;
     background-color: transparent;
 }
 .todo__input:focus {
     outline: none;
+}
+.valid {
+    margin-bottom: -10px;
+    padding-left: 20px;
+    color: #076d078a;
 }
