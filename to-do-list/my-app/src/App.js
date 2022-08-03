@@ -37,6 +37,7 @@ function App() {
             deleteItem={(index) => {
               setData([...data.slice(0, index), ...data.slice(index + 1, data.length)])
             }}  
+            dataFull={[...data, ...madeData]} 
         />
         {completed}
         <ToDoListComponent 
@@ -52,6 +53,7 @@ function App() {
             deleteItem={(index) => {
               setMadeData([...madeData.slice(0, index), ...madeData.slice(index + 1, madeData.length)])
             }} 
+            dataFull={[...data, ...madeData]} 
         />
       </div>
     </div>

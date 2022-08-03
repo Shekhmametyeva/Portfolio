@@ -6,6 +6,7 @@ function ToDoListComponent (props) {
     const data = props.data.map((el, index) => {
         return (
             <ToDoItemComponent 
+                dataFull={props.dataFull}
                 highlighted={props.highlighted === el.value}
                 highlight={props.highlight}
                 key={el.value} 
@@ -16,6 +17,7 @@ function ToDoListComponent (props) {
                 menu={props.menu === el.value}
                 updateSetMenu={props.updateSetMenu} 
                 deleteItem={props.deleteItem}
+                
             />
         )
     })

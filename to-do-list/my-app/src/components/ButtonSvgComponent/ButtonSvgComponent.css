@@ -26,3 +26,6 @@
 .todo__menu__button {
     margin-right: 20px;
 }
+.close {
+    transform: rotate(45deg);
+}

@@ -44,6 +44,21 @@
     }
 }
 
+.highlighted {
+    animation-name: highlighted; 
+    animation-duration: 0.2s;
+    animation-iteration-count: 5;
+}
+@keyframes highlighted {
+    from {
+        background-color: transparent;
+    }
+  
+    to {
+        background-color: #05dcb57c;
+    }
+}
+
 .todo__menu {
     width: 170px;
     position: absolute;

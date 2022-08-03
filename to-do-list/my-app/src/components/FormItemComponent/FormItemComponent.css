@@ -1,0 +1,11 @@
+.todo__item__form {
+    padding: 8px 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+}
+.todo__item__form input {
+    font-size: 1.2rem;
+}
+

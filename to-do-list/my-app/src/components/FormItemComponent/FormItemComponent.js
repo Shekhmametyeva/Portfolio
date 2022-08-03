@@ -1,8 +1,9 @@
-import './FormComponent.css';
+import './FormItemComponent.css';
 import ButtonSvgComponent from '../ButtonSvgComponent/ButtonSvgComponent';
 import React, { useState } from 'react';
 
 function checkValidity (props, value, setValue, setValid) {
+    console.log(props.dataFull)
     if(!value.trim()) {
         setValid('поле не заполнено')
         setTimeout(() => {
@@ -10,8 +11,8 @@ function checkValidity (props, value, setValue, setValid) {
         }, 1500);
         return null
     }
-    if(props.data.find(el => el.value === value.trim())) {
-        props.highlight(value)
+    if(props.dataFull.find(el => el.value === value.trim())) {
+        props.highlight(value.trim())
         setTimeout(() => {
             setValue()
         }, 1500);
@@ -21,13 +22,12 @@ function checkValidity (props, value, setValue, setValid) {
     return value.trim()
 }
 
-
-function FormComponent (props) {
+function FormItemComponent (props) {
     const [value, setValue] = useState('');
     const [valid, setValid] = useState(false);
-    const prompt = valid ? <p className='valid'>{valid}</p> : null;
+    const prompt = valid ? <p className='valid'>{valid}</p> : null
     return (
-        <form className='todo__form' 
+        <form className='todo__form todo__item__form' 
             onSubmit={(event) => {
                 event.preventDefault();
                 const newValue = checkValidity(props, value, () => setValue(''), (text)=> setValid(text));
@@ -38,20 +38,21 @@ function FormComponent (props) {
             }}> 
             <div className='input__container'>
                 <input
+                    autoFocus 
                     readOnly={valid}
                     type='text' 
-                    placeholder={valid ? '' : 'Что добавим в список задач?'} 
                     value={value} 
                     className='todo__input' 
                     onChange={(event) => {
                         setValue(event.target.value)
                     }}
                 />
-                <ButtonSvgComponent name='add' type='submit' disabled={valid}/>
+                <ButtonSvgComponent class='todo__button' name='add' type='submit' disabled={valid}/>
+                <ButtonSvgComponent class='todo__button close' name='add' callback={() => props.closeInput()}/>
             </div>
             {prompt}
         </form>
     )
-}
 
-export default FormComponent
+}
+export default FormItemComponent

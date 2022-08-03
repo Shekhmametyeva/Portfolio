@@ -1,4 +1,5 @@
 .todo__form {
+    position: relative;
     width: 100%;
     padding: 10px 20px;
     background-color: #eee;
@@ -12,6 +13,7 @@
 .input__container {
     flex-grow: 1;
     display: flex;
+    gap: 10px;
 }
 .todo__input {
     width: 100%;
@@ -23,7 +25,9 @@
     outline: none;
 }
 .valid {
-    margin-bottom: -10px;
+    position: absolute;
+    top: 50%;
+    left: 0;
     padding-left: 20px;
     color: #076d078a;
 }
