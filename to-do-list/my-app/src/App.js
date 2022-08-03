@@ -33,7 +33,10 @@ function App() {
               setData([...data.slice(0, index), ...data.slice(index + 1, data.length)])
             }}
             menu={menu}
-            updateSetMenu={(value) => setMenu(value)}    
+            updateSetMenu={(value) => setMenu(value)}  
+            deleteItem={(index) => {
+              setData([...data.slice(0, index), ...data.slice(index + 1, data.length)])
+            }}  
         />
         {completed}
         <ToDoListComponent 
@@ -46,6 +49,9 @@ function App() {
             }}
             menu={menu}
             updateSetMenu={(value) => setMenu(value)}    
+            deleteItem={(index) => {
+              setMadeData([...madeData.slice(0, index), ...madeData.slice(index + 1, madeData.length)])
+            }} 
         />
       </div>
     </div>

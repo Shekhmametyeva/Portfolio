@@ -45,11 +45,11 @@
 }
 
 .todo__menu {
-    width: 150px;
+    width: 170px;
     position: absolute;
     z-index: 2;
     top: 5px;
-    right: -153px;
+    right: -173px;
     display: flex;
     flex-direction: column;
     background-color: #eee;
@@ -63,4 +63,9 @@
     padding: 5px;
     font-size: 1.2rem;
     border: 1px solid #c3c3c3;
+    cursor: pointer;
+    color: #000;
+}
+.todo__menu__item:hover {
+    background-color: #01680177;
 }

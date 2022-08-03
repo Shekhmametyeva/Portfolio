@@ -1,25 +1,24 @@
 import './ToDoItemComponent.css';
 import ButtonSvgComponent from '../ButtonSvgComponent/ButtonSvgComponent';
+import FormItemComponent from '../FormItemComponent/FormItemComponent';
+
 
 
 function ToDoItemComponent (props) {
     
     const openMenu = props.menu 
-    ? <div className='todo__menu'>
-        <div className='todo__menu__item'>
-            <p>Elfkbnm</p>
-            <ButtonSvgComponent name='delete' class='todo__button'/>
-        </div>
-        <div className='todo__menu__item' >
-            <p>Elfkbnm</p>
-            <ButtonSvgComponent name='delete' class='todo__button'/>
-        </div>
-        <div className='todo__menu__item'>
-            <p>Elfkbnm</p>
-            <ButtonSvgComponent name='delete' class='todo__button'/>
-        </div>
-    </div> 
-    : null
+        ? <div className='todo__menu' >
+            <div className='todo__menu__item' onClick={() => props.deleteItem(props.index)}>
+                <p>Удалить</p>
+                <ButtonSvgComponent name='delete' class='todo__button'/>
+            </div>
+            <div className='todo__menu__item'>
+                <p>Редактировать</p>
+                <ButtonSvgComponent name='edit' class='todo__button'/>
+            </div>
+        </div> 
+        : null;
+
     return (
         <div  
             className={props.complite ?  (props.highlighted ? 'todo__item done highlighted' : 'todo__item done') : (props.highlighted ? 'todo__item highlighted' : 'todo__item')} 

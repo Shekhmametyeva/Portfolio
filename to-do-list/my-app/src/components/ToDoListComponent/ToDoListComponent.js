@@ -15,6 +15,7 @@ function ToDoListComponent (props) {
                 updateSetData={props.updateSetData}
                 menu={props.menu === el.value}
                 updateSetMenu={props.updateSetMenu} 
+                deleteItem={props.deleteItem}
             />
         )
     })
