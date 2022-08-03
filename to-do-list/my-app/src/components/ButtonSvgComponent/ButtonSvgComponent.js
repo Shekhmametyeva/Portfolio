@@ -5,7 +5,8 @@ import iconsSVG from '../../assets/icons/sprite.svg';
 function ButtonSvgComponent (props) {
     return (
         <button 
-            className='button'
+            disabled={props.disabled}
+            className={props.class ? `button todo__button` : `button`}
             type={props.type} 
             onClick={() => {
                 if(props.callback) {
@@ -13,7 +14,7 @@ function ButtonSvgComponent (props) {
                 }
                 
             }}>
-                <svg className={props.class ? `todo__icon` : `icon`}>
+                <svg className='icon'>
                     <use xlinkHref={`${iconsSVG}#${props.name}`} />
                 </svg>
         </button>
