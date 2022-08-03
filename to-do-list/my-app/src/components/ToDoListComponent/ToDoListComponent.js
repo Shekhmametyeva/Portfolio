@@ -2,6 +2,7 @@ import ToDoItemComponent from '../ToDoItemComponent/ToDoItemComponent';
 import './ToDoListComponent.css';
 
 function ToDoListComponent (props) {
+    
     const data = props.data.map((el, index) => {
         return (
             <ToDoItemComponent 
@@ -12,6 +13,8 @@ function ToDoListComponent (props) {
                 element={el.value} 
                 complite={el.complete} 
                 updateSetData={props.updateSetData}
+                menu={props.menu === el.value}
+                updateSetMenu={props.updateSetMenu} 
             />
         )
     })

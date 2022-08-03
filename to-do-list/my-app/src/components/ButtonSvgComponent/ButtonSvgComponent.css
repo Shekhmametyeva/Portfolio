@@ -19,3 +19,10 @@
 .todo__button:hover {
     border-color: #016801;
 }
+
+.button__active {
+    fill: #016801;
+}
+.todo__menu__button {
+    margin-right: 20px;
+}

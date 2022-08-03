@@ -6,11 +6,16 @@ function ButtonSvgComponent (props) {
     return (
         <button 
             disabled={props.disabled}
-            className={props.class ? `button todo__button` : `button`}
+            className={props.class ? `${props.class} button` : `button`}
             type={props.type} 
             onClick={() => {
                 if(props.callback) {
-                    props.callback();
+                    if (props.value) {
+                        props.callback(props.value)
+                    } else {
+                        props.callback();
+                    }
+                    
                 }
                 
             }}>

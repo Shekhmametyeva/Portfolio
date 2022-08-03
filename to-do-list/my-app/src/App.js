@@ -8,11 +8,15 @@ function App() {
   const [data, setData] = useState([]);
   const [madeData, setMadeData] = useState([]);
   const [highlighted, setHighlighted] = useState();
+  const [menu, setMenu] = useState('');
 
   const active = data.length ? <h2 className='todo__title'>Активные:</h2>: null;
   const completed = madeData.length ? <h2 className='todo__title'>Завершенные:</h2>: null;
   return (
-    <div className='wrapper'>
+    <div className='wrapper' onClick={(event) => {
+      if(!event.target.closest('.todo__menu__button')) {
+        setMenu('')
+      }}}>
       <div className='todo'>
         <FormComponent 
             data={[...data, ...madeData]} 
@@ -27,9 +31,9 @@ function App() {
             updateSetData={(index, elem) => {
               setMadeData([...madeData, {value: elem, complete: true}])
               setData([...data.slice(0, index), ...data.slice(index + 1, data.length)])
-            }
-
-            }
+            }}
+            menu={menu}
+            updateSetMenu={(value) => setMenu(value)}    
         />
         {completed}
         <ToDoListComponent 
@@ -39,9 +43,9 @@ function App() {
             updateSetData={(index, elem) => {
               setData([...data, {value: elem, complete: false}])
               setMadeData([...madeData.slice(0, index), ...madeData.slice(index + 1, madeData.length)])
-            }
-              
-            }
+            }}
+            menu={menu}
+            updateSetMenu={(value) => setMenu(value)}    
         />
       </div>
     </div>

@@ -1,7 +1,25 @@
 import './ToDoItemComponent.css';
 import ButtonSvgComponent from '../ButtonSvgComponent/ButtonSvgComponent';
 
+
 function ToDoItemComponent (props) {
+    
+    const openMenu = props.menu 
+    ? <div className='todo__menu'>
+        <div className='todo__menu__item'>
+            <p>Elfkbnm</p>
+            <ButtonSvgComponent name='delete' class='todo__button'/>
+        </div>
+        <div className='todo__menu__item' >
+            <p>Elfkbnm</p>
+            <ButtonSvgComponent name='delete' class='todo__button'/>
+        </div>
+        <div className='todo__menu__item'>
+            <p>Elfkbnm</p>
+            <ButtonSvgComponent name='delete' class='todo__button'/>
+        </div>
+    </div> 
+    : null
     return (
         <div  
             className={props.complite ?  (props.highlighted ? 'todo__item done highlighted' : 'todo__item done') : (props.highlighted ? 'todo__item highlighted' : 'todo__item')} 
@@ -14,6 +32,16 @@ function ToDoItemComponent (props) {
                     name='complete' 
                     class='todo__button'   
                 />
+                <ButtonSvgComponent 
+                    callback={
+                        props.updateSetMenu
+                    }
+                    value={props.menu ? '' : props.element}
+                    name='menu' 
+                    class='todo__button todo__menu__button'   
+                />
+                {openMenu}
+                
         </div>
         
     )

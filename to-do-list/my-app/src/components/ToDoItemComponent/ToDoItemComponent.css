@@ -1,10 +1,12 @@
 .todo__item {
+    position: relative;
     width: 100%;
     height: 50px;
-    padding: 0 20px;
+    padding-left: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 10px;
     border-radius: 16px;
     background-color: #eee;
     
@@ -16,13 +18,13 @@
     font-weight: 400;
 }
 .done {
-    background-color: #c3c3c3;
+    background-color: #b8b8b8;
     color: #9b9a9a;
     position: relative;
 }
 .done::before {
     content: '';
-    width: 100%;
+    width: 560px;
     height: 2px;
     position: absolute;
     top: 50%;
@@ -40,4 +42,25 @@
         transform-origin:  0% 50%;
         transform:scaleX(1);
     }
+}
+
+.todo__menu {
+    width: 150px;
+    position: absolute;
+    z-index: 2;
+    top: 5px;
+    right: -153px;
+    display: flex;
+    flex-direction: column;
+    background-color: #eee;
+    border: 2px solid #016801;
+
+}
+.todo__menu__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    font-size: 1.2rem;
+    border: 1px solid #c3c3c3;
 }
