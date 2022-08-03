@@ -20,7 +20,7 @@ function App() {
       <div className='todo'>
         <FormComponent 
             data={[...data, ...madeData]} 
-            updateStateValue={(value) => setData([...data, {value: value, complete: false}])}
+            updateStateData={(value) => setData([...data, {value: value, complete: false}])}
             highlight={(value) => setHighlighted(value)}
         />
         {active}
@@ -38,6 +38,7 @@ function App() {
               setData([...data.slice(0, index), ...data.slice(index + 1, data.length)])
             }}  
             dataFull={[...data, ...madeData]} 
+            updateStateData={(index, value) => setData([...data.slice(0, index), {value: value, complete: false}, ...data.slice(index + 1, data.length)])}
         />
         {completed}
         <ToDoListComponent 

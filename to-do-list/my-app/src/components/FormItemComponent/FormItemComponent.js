@@ -11,6 +11,11 @@ function checkValidity (props, value, setValue, setValid) {
         }, 1500);
         return null
     }
+    if(props.element === value.trim()) {
+        console.log('fkjvnfkj')
+        props.closeInput()
+        return null
+    }
     if(props.dataFull.find(el => el.value === value.trim())) {
         props.highlight(value.trim())
         setTimeout(() => {
@@ -32,7 +37,7 @@ function FormItemComponent (props) {
                 event.preventDefault();
                 const newValue = checkValidity(props, value, () => setValue(''), (text)=> setValid(text));
                 if (newValue) {
-                    props.updateStateValue(newValue)
+                    props.updateStateData(props.index, newValue)
                 }
                 
             }}> 

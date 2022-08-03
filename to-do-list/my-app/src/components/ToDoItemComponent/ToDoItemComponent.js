@@ -8,7 +8,7 @@ import React, { useState } from 'react';
 function ToDoItemComponent (props) {
     const [inputOpen, setInputOpen] = useState(false);
 
-    const input = inputOpen ? <FormItemComponent highlight={props.highlight} closeInput={() => setInputOpen(false)} dataFull={props.dataFull} /> : null
+    const input = inputOpen ? <FormItemComponent element={props.element} index={props.index} updateStateData={props.updateStateData} highlight={props.highlight} closeInput={() => setInputOpen(false)} dataFull={props.dataFull} /> : null
     
     const openMenu = props.menu 
         ? <div className='todo__menu' >

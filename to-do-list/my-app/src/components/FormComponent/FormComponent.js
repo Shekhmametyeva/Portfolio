@@ -32,7 +32,7 @@ function FormComponent (props) {
                 event.preventDefault();
                 const newValue = checkValidity(props, value, () => setValue(''), (text)=> setValid(text));
                 if (newValue) {
-                    props.updateStateValue(newValue)
+                    props.updateStateData(newValue)
                 }
                 
             }}> 
