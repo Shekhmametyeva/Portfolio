@@ -2,21 +2,47 @@ import './App.css';
 import FormComponent from './components/FormComponent/FormComponent';
 import ToDoListComponent from './components/ToDoListComponent/ToDoListComponent';
 import React, {useState} from 'react';
-import HelpComponent from './components/HelpComponent/HelpComponent';
 
 
 function App() {
   const [data, setData] = useState([]);
+  const [madeData, setMadeData] = useState([]);
+  const [highlighted, setHighlighted] = useState();
+
+  const active = data.length ? <h2 className='todo__title'>Активные:</h2>: null;
+  const completed = madeData.length ? <h2 className='todo__title'>Завершенные:</h2>: null;
   return (
     <div className='wrapper'>
       <div className='todo'>
-        <HelpComponent />
-        <FormComponent data={data} updateStateValue={(value) => setData([...data, {value: value, complete: false}])}/>
+        <FormComponent 
+            data={[...data, ...madeData]} 
+            updateStateValue={(value) => setData([...data, {value: value, complete: false}])}
+            highlight={(value) => setHighlighted(value)}
+        />
+        {active}
         <ToDoListComponent 
-            data={data} 
-            updateStateData={(index, elem) => {
-              setData([...data.slice(0, index), ...data.slice(index + 1, data.length), {value: elem, complete: true}])}
-            }/>
+            highlighted={highlighted}
+            highlight={(value) => setHighlighted(value)}
+            data={[...data]} 
+            updateSetData={(index, elem) => {
+              setMadeData([...madeData, {value: elem, complete: true}])
+              setData([...data.slice(0, index), ...data.slice(index + 1, data.length)])
+            }
+
+            }
+        />
+        {completed}
+        <ToDoListComponent 
+            highlighted={highlighted}
+            highlight={(value) => setHighlighted(value)}
+            data={[...madeData]} 
+            updateSetData={(index, elem) => {
+              setData([...data, {value: elem, complete: false}])
+              setMadeData([...madeData.slice(0, index), ...madeData.slice(index + 1, madeData.length)])
+            }
+              
+            }
+        />
       </div>
     </div>
   );
