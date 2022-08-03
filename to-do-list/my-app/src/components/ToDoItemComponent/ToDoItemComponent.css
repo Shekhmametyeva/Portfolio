@@ -19,7 +19,6 @@
     background-color: #c3c3c3;
     color: #9b9a9a;
     position: relative;
-    padding-right: 60px;
 }
 .done::before {
     content: '';
