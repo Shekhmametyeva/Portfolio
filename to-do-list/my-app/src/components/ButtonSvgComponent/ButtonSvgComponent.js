@@ -15,13 +15,11 @@ function ButtonSvgComponent (props) {
                     } else {
                         props.callback();
                     }
-                    
                 }
-                
             }}>
-                <svg className='icon'>
-                    <use xlinkHref={`${iconsSVG}#${props.name}`} />
-                </svg>
+            <svg className='icon'>
+                <use xlinkHref={`${iconsSVG}#${props.name}`} />
+            </svg>
         </button>
     )
 }

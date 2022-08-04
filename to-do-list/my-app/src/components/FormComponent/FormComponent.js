@@ -8,7 +8,8 @@ function FormComponent (props) {
     const [valid, setValid] = useState(false);
     const prompt = valid ? <p className='valid'>{valid}</p> : null;
     return (
-        <form className='todo__form' 
+        <form   
+            className='todo__form' 
             onSubmit={(event) => {
                 event.preventDefault();
                 const newValue = checkValidity(props, value, () => setValue(''), (text)=> setValid(text));

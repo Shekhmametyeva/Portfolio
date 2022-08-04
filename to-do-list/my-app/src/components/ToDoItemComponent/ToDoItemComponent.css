@@ -58,29 +58,3 @@
         background-color: #05dcb57c;
     }
 }
-
-.todo__menu {
-    width: 170px;
-    position: absolute;
-    z-index: 2;
-    top: 5px;
-    right: -173px;
-    display: flex;
-    flex-direction: column;
-    background-color: #eee;
-    border: 2px solid #016801;
-
-}
-.todo__menu__item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 5px;
-    font-size: 1.2rem;
-    border: 1px solid #c3c3c3;
-    cursor: pointer;
-    color: #000;
-}
-.todo__menu__item:hover {
-    background-color: #01680177;
-}
