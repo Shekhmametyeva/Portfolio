@@ -1,5 +1,4 @@
 export function checkValidity (props, value, setValue, setValid) {
-    console.log(props.dataFull)
     if(!value.trim()) {
         setValid('поле не заполнено')
         setTimeout(() => {

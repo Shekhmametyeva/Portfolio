@@ -38,15 +38,10 @@ function App() {
             }}
             menu={menu}
             updateSetMenu={(value) => setMenu(value)}  
-            deleteItem={(index) => {
-              setData([...data.slice(0, index), ...data.slice(index + 1, data.length)])
-            }}  
+            deleteItem={(index) => setData([...data.slice(0, index), ...data.slice(index + 1, data.length)])}  
             dataFull={[...data, ...madeData]} 
             inputItemOpen={inputItemOpen}
-            updateSetinputItem={(value) => {
-              console.log(inputItemOpen, value);
-              setInputItemOpen(value)
-              console.log(inputItemOpen); }}
+            updateSetinputItem={(value) => setInputItemOpen(value)}
             updateStateData={(index, value) => setData([...data.slice(0, index), {value: value, complete: false}, ...data.slice(index + 1, data.length)])}
         />
         {completed}
@@ -60,9 +55,7 @@ function App() {
             }}
             menu={menu}
             updateSetMenu={(value) => setMenu(value)}    
-            deleteItem={(index) => {
-              setMadeData([...madeData.slice(0, index), ...madeData.slice(index + 1, madeData.length)])
-            }} 
+            deleteItem={(index) => setMadeData([...madeData.slice(0, index), ...madeData.slice(index + 1, madeData.length)])} 
             dataFull={[...data, ...madeData]} 
             inputItemOpen={inputItemOpen}
             updateSetinputItem={(value) => setInputItemOpen(value)}
