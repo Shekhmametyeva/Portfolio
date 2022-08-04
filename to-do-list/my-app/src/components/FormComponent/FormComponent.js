@@ -1,27 +1,7 @@
 import './FormComponent.css';
 import ButtonSvgComponent from '../ButtonSvgComponent/ButtonSvgComponent';
 import React, { useState } from 'react';
-
-function checkValidity (props, value, setValue, setValid) {
-    if(!value.trim()) {
-        setValid('поле не заполнено')
-        setTimeout(() => {
-            setValue()
-            setValid(false)
-        }, 1500);
-        return null
-    }
-    if(props.data.find(el => el.value === value.trim())) {
-        props.highlight(value.trim())
-        setTimeout(() => {
-            setValue()
-        }, 1500);
-        return null
-    }
-    setValue()
-    return value.trim()
-}
-
+import { checkValidity } from '../../helperFunctions/helperFunctions'
 
 function FormComponent (props) {
     const [value, setValue] = useState('');
@@ -34,8 +14,7 @@ function FormComponent (props) {
                 const newValue = checkValidity(props, value, () => setValue(''), (text)=> setValid(text));
                 if (newValue) {
                     props.updateStateData(newValue)
-                }
-                
+                } 
             }}> 
             <div className='input__container'>
                 <input

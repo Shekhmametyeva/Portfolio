@@ -23,7 +23,7 @@ function App() {
       }}}>
       <div className='todo'>
         <FormComponent 
-            data={[...data, ...madeData]} 
+            dataFull={[...data, ...madeData]} 
             updateStateData={(value) => setData([...data, {value: value, complete: false}])}
             highlight={(value) => setHighlighted(value)}
         />
