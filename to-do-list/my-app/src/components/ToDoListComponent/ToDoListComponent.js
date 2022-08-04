@@ -18,6 +18,8 @@ function ToDoListComponent (props) {
                 updateSetMenu={props.updateSetMenu} 
                 deleteItem={props.deleteItem}
                 updateStateData={props.updateStateData}
+                inputItemOpen={props.inputItemOpen === el.value}
+                updateSetinputItem={props.updateSetinputItem}
                 
             />
         )

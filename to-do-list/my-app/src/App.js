@@ -9,6 +9,7 @@ function App() {
   const [madeData, setMadeData] = useState([]);
   const [highlighted, setHighlighted] = useState();
   const [menu, setMenu] = useState('');
+  const [inputItemOpen, setInputItemOpen] = useState(false);
 
   const active = data.length ? <h2 className='todo__title'>Активные:</h2>: null;
   const completed = madeData.length ? <h2 className='todo__title'>Завершенные:</h2>: null;
@@ -16,6 +17,9 @@ function App() {
     <div className='wrapper' onClick={(event) => {
       if(!event.target.closest('.todo__menu__button')) {
         setMenu('')
+      }
+      if(inputItemOpen && !event.target.closest('.todo__item__form')){
+        setInputItemOpen('')
       }}}>
       <div className='todo'>
         <FormComponent 
@@ -38,6 +42,11 @@ function App() {
               setData([...data.slice(0, index), ...data.slice(index + 1, data.length)])
             }}  
             dataFull={[...data, ...madeData]} 
+            inputItemOpen={inputItemOpen}
+            updateSetinputItem={(value) => {
+              console.log(inputItemOpen, value);
+              setInputItemOpen(value)
+              console.log(inputItemOpen); }}
             updateStateData={(index, value) => setData([...data.slice(0, index), {value: value, complete: false}, ...data.slice(index + 1, data.length)])}
         />
         {completed}
@@ -55,6 +64,9 @@ function App() {
               setMadeData([...madeData.slice(0, index), ...madeData.slice(index + 1, madeData.length)])
             }} 
             dataFull={[...data, ...madeData]} 
+            inputItemOpen={inputItemOpen}
+            updateSetinputItem={(value) => setInputItemOpen(value)}
+            updateStateData={(index, value) => setMadeData([...madeData.slice(0, index), {value: value, complete: true}, ...madeData.slice(index + 1, madeData.length)])}
         />
       </div>
     </div>

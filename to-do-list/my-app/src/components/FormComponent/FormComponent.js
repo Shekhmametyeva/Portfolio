@@ -6,12 +6,13 @@ function checkValidity (props, value, setValue, setValid) {
     if(!value.trim()) {
         setValid('поле не заполнено')
         setTimeout(() => {
+            setValue()
             setValid(false)
         }, 1500);
         return null
     }
     if(props.data.find(el => el.value === value.trim())) {
-        props.highlight(value)
+        props.highlight(value.trim())
         setTimeout(() => {
             setValue()
         }, 1500);

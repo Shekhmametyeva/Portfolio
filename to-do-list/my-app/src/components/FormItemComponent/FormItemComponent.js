@@ -7,12 +7,12 @@ function checkValidity (props, value, setValue, setValid) {
     if(!value.trim()) {
         setValid('поле не заполнено')
         setTimeout(() => {
+            setValue()
             setValid(false)
         }, 1500);
         return null
     }
     if(props.element === value.trim()) {
-        console.log('fkjvnfkj')
         props.closeInput()
         return null
     }
@@ -53,7 +53,6 @@ function FormItemComponent (props) {
                     }}
                 />
                 <ButtonSvgComponent class='todo__button' name='add' type='submit' disabled={valid}/>
-                <ButtonSvgComponent class='todo__button close' name='add' callback={() => props.closeInput()}/>
             </div>
             {prompt}
         </form>

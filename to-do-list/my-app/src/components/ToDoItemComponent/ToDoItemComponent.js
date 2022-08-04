@@ -1,14 +1,11 @@
 import './ToDoItemComponent.css';
 import ButtonSvgComponent from '../ButtonSvgComponent/ButtonSvgComponent';
 import FormItemComponent from '../FormItemComponent/FormItemComponent';
-import React, { useState } from 'react';
 
 
 
 function ToDoItemComponent (props) {
-    const [inputOpen, setInputOpen] = useState(false);
-
-    const input = inputOpen ? <FormItemComponent element={props.element} index={props.index} updateStateData={props.updateStateData} highlight={props.highlight} closeInput={() => setInputOpen(false)} dataFull={props.dataFull} /> : null
+    const input = props.inputItemOpen ? <FormItemComponent element={props.element} index={props.index} updateStateData={props.updateStateData} highlight={props.highlight} closeInput={() => props.updateSetinputItem('')} dataFull={props.dataFull} /> : null
     
     const openMenu = props.menu 
         ? <div className='todo__menu' >
@@ -16,7 +13,7 @@ function ToDoItemComponent (props) {
                 <p>Удалить</p>
                 <ButtonSvgComponent name='delete' class='todo__button'/>
             </div>
-            <div className='todo__menu__item' onClick={() => setInputOpen(true)}>
+            <div className='todo__menu__item' onClick={() => props.updateSetinputItem(props.element)}>
                 <p>Редактировать</p>
                 <ButtonSvgComponent name='edit' class='todo__button'/>
             </div>
