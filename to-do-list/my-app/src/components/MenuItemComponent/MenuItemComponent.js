@@ -8,7 +8,7 @@ function MenuItemComponent (props) {
                 <p>Удалить</p>
                 <ButtonSvgComponent name='delete' class='todo__button'/>
             </div>
-            <div className='todo__menu__item' onClick={() => props.updateSetinputItem(props.element)}>
+            <div className='todo__menu__item' onClick={() => props.updateSetinputItem(props.element.value)}>
                 <p>Редактировать</p>
                 <ButtonSvgComponent name='edit' class='todo__button'/>
             </div>

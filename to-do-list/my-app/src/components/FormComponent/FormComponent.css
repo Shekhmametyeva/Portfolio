@@ -26,8 +26,16 @@
 }
 .valid {
     position: absolute;
-    top: 50%;
+    top: 20%;
     left: 0;
     padding-left: 20px;
     color: #ff00008a;
 }
+
+
+.form__button__container {
+    padding-top: 10px;
+    display: flex;
+    gap: 10px;
+}
+

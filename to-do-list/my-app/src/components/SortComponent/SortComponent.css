@@ -1,0 +1,27 @@
+.sort__container {
+    display: flex;
+    gap: 10px;
+    margin-left: auto;
+}
+.sort__button {
+    height: 40px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    border: 2px solid #9b9a9a;
+    background-color: rgba(238, 238, 238, 0.729);
+    font-size: 1.1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 3px 3px 3px #016801;
+    transition: all 0.2s linear;
+}
+.sort__text {
+    flex-grow: 1;
+    text-align: center;
+}
+.sort__button:hover {
+    background-color: #01680170;
+}

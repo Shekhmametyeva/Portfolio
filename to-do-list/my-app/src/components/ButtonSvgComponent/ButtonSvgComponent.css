@@ -29,3 +29,8 @@
 .close {
     transform: rotate(45deg);
 }
+
+.rank__button {
+    width: 20px;
+    height: 20px;
+}

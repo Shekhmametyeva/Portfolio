@@ -15,7 +15,7 @@ function FormItemComponent (props) {
                 event.preventDefault();
                 const newValue = checkValidity(props, value, () => setValue(''), (text)=> setValid(text));
                 if (newValue) {
-                    props.updateStateData(props.index, newValue)
+                    props.updateStateData(props.index, newValue, props.rank)
                 }
                 
             }}> 
@@ -31,6 +31,7 @@ function FormItemComponent (props) {
                     }}
                 />
                 <ButtonSvgComponent class='todo__button' name='add' type='submit' disabled={valid}/>
+                <ButtonSvgComponent class='todo__button close' name='add' type='button' callback={() => props.closeInput()}/>
             </div>
             {prompt}
         </form>

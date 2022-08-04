@@ -11,8 +11,7 @@ function ToDoListComponent (props) {
                 highlight={props.highlight}
                 key={el.value} 
                 index={index} 
-                element={el.value} 
-                complite={el.complete} 
+                element={el}
                 updateSetData={props.updateSetData}
                 menu={props.menu === el.value}
                 updateSetMenu={props.updateSetMenu} 

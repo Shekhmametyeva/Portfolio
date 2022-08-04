@@ -2,6 +2,7 @@ import './App.css';
 import FormComponent from './components/FormComponent/FormComponent';
 import ToDoListComponent from './components/ToDoListComponent/ToDoListComponent';
 import React, {useState} from 'react';
+import SortComponent from './components/SortComponent/SortComponent';
 
 
 function App() {
@@ -24,16 +25,17 @@ function App() {
       <div className='todo'>
         <FormComponent 
             dataFull={[...data, ...madeData]} 
-            updateStateData={(value) => setData([...data, {value: value, complete: false}])}
+            updateStateData={(value, rank) => setData([...data, {value: value, complete: false, rank: rank}])}
             highlight={(value) => setHighlighted(value)}
         />
+        <SortComponent />
         {active}
         <ToDoListComponent 
             highlighted={highlighted}
             highlight={(value) => setHighlighted(value)}
             data={[...data]} 
-            updateSetData={(index, elem) => {
-              setMadeData([...madeData, {value: elem, complete: true}])
+            updateSetData={(index, elem, rank) => {
+              setMadeData([...madeData, {value: elem, complete: true, rank: rank}])
               setData([...data.slice(0, index), ...data.slice(index + 1, data.length)])
             }}
             menu={menu}
@@ -41,16 +43,17 @@ function App() {
             deleteItem={(index) => setData([...data.slice(0, index), ...data.slice(index + 1, data.length)])}  
             dataFull={[...data, ...madeData]} 
             inputItemOpen={inputItemOpen}
-            updateSetinputItem={(value) => setInputItemOpen(value)}
-            updateStateData={(index, value) => setData([...data.slice(0, index), {value: value, complete: false}, ...data.slice(index + 1, data.length)])}
+            updateSetinputItem={(value) => {
+              setInputItemOpen(value)}}
+            updateStateData={(index, value, rank) => setData([...data.slice(0, index), {value: value, complete: false, rank: rank}, ...data.slice(index + 1, data.length)])}
         />
         {completed}
         <ToDoListComponent 
             highlighted={highlighted}
             highlight={(value) => setHighlighted(value)}
             data={[...madeData]} 
-            updateSetData={(index, elem) => {
-              setData([...data, {value: elem, complete: false}])
+            updateSetData={(index, elem, rank) => {
+              setData([...data, {value: elem, complete: false, rank: rank}])
               setMadeData([...madeData.slice(0, index), ...madeData.slice(index + 1, madeData.length)])
             }}
             menu={menu}
@@ -59,7 +62,7 @@ function App() {
             dataFull={[...data, ...madeData]} 
             inputItemOpen={inputItemOpen}
             updateSetinputItem={(value) => setInputItemOpen(value)}
-            updateStateData={(index, value) => setMadeData([...madeData.slice(0, index), {value: value, complete: true}, ...madeData.slice(index + 1, madeData.length)])}
+            updateStateData={(index, value, rank) => setMadeData([...madeData.slice(0, index), {value: value, complete: true, rank: rank}, ...madeData.slice(index + 1, madeData.length)])}
         />
       </div>
     </div>
