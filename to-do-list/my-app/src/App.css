@@ -1,0 +1,21 @@
+.wrapper {
+    min-height: 100vh;
+    margin: 0 auto;
+    background: url(./assets/images/bg.jpg) center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.todo {
+    width: 700px;
+    min-height: 500px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: relative;
+}
+.todo__title {
+    color: #eee;
+    
+}

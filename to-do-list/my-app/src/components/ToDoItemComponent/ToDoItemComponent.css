@@ -1,0 +1,68 @@
+.todo__item {
+    position: relative;
+    width: 100%;
+    min-height: 50px;
+    padding: 5px 0 5px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    border-radius: 16px;
+    background-color: #eee;  
+}
+.todo__done:hover {
+    background-color: #01680170;
+    border-radius: 7px;
+}
+.todo__text {
+    flex-grow: 1;
+    max-width: 470px;
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: 400;
+}
+.done {
+    background-color: #b8b8b8;
+    color: #9b9a9a;
+    position: relative;
+}
+.done .todo__done {
+    background-color: #01680170;
+    border-radius: 7px;
+}
+.done::before {
+    content: '';
+    width: 560px;
+    height: 2px;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    background-color: #787878;
+    animation: done 1s forwards;
+    
+}
+@keyframes done {
+    from {
+        transform-origin:  0% 50%;
+        transform:scaleX(0);
+    }
+    to {
+        transform-origin:  0% 50%;
+        transform:scaleX(1);
+    }
+}
+
+.highlighted {
+    animation-name: highlighted; 
+    animation-duration: 0.2s;
+    animation-iteration-count: 5;
+}
+@keyframes highlighted {
+    from {
+        background-color: transparent;
+    }
+  
+    to {
+        background-color: #01680170;
+    }
+}
