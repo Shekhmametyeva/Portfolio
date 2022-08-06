@@ -22,12 +22,12 @@ function SortComponent (props) {
         : null;
   return (
       <div className='sort__container'>
-          <div className={props.disabled ? 'sort__button sort__button_disabled' : 'sort__button'} onClick={() => {if(!props.disabled) props.setMenuRank()}} >
+          <div className='sort__button' onClick={() => props.setMenuRank()} >
             <p className='sort__text'>All</p>   
             <ButtonSvgComponent type='button' name='arrow' class='rank__button'/>
             {menuRank}
           </div>
-          <div className={props.disabled ? 'sort__button sort__button_disabled' : 'sort__button'} onClick={() => {if(!props.disabled) props.setMenuSort()}}>
+          <div className='sort__button' onClick={() => props.setMenuSort()}>
             <ButtonSvgComponent class='todo__button' name='sort' type='button' />
             {menuSort}
           </div>

@@ -22,6 +22,18 @@ function App() {
 
   const active = data.length ? <h2 className='todo__title'>Активные:</h2>: null;
   const completed = madeData.length ? <h2 className='todo__title'>Завершенные:</h2>: null;
+  const buttonSort = [...data, ...madeData].length 
+    ? <SortComponent 
+      setRank={(value) => setRank(value)} 
+      changeActive={(value) => setSort(value)} 
+      active={sort} 
+      rank={ranks} 
+      menuRank={menuRank} 
+      setMenuRank={() => setMenuRank(!menuRank)} 
+      menuSort={menuSort} 
+      setMenuSort={() => setMenuSort(!menuSort)}/>
+    : null
+
   return (
     <div className='wrapper' onClick={(event) => {
       if(!event.target.closest('.todo__menu__button')) {
@@ -44,7 +56,7 @@ function App() {
             highlight={(value) => setHighlighted(value)}
             rank={ranks}
         />
-        <SortComponent setRank={(value) => setRank(value)} changeActive={(value) => setSort(value)} active={sort} disabled={![...data, ...madeData].length} rank={ranks} menuRank={menuRank} setMenuRank={() => setMenuRank(!menuRank)} menuSort={menuSort} setMenuSort={() => setMenuSort(!menuSort)}/>
+        {buttonSort}
         {active}
         <ToDoListComponent 
             highlighted={highlighted}
