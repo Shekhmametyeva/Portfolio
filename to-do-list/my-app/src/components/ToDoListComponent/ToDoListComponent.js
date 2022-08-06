@@ -3,14 +3,14 @@ import './ToDoListComponent.css';
 
 function ToDoListComponent (props) {
     
-    const data = props.data.map((el, index) => {
+    const data = props.dataShow.map((el) => {
         return (
             <ToDoItemComponent 
                 dataFull={props.dataFull}
                 highlighted={props.highlighted === el.value}
                 highlight={props.highlight}
                 key={el.value} 
-                index={index} 
+                index={props.data.findIndex(elem => elem.value === el.value)} 
                 element={el}
                 updateSetData={props.updateSetData}
                 menu={props.menu === el.value}

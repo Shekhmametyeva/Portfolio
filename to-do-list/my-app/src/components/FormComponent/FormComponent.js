@@ -17,7 +17,7 @@ function FormComponent (props) {
                 event.preventDefault();
                 const newValue = checkValidity(props, value, () => setValue(''), (text)=> setValid(text));
                 if (newValue) {
-                    props.updateStateData(newValue, activeRank)
+                    props.editStateData(newValue, activeRank)
                 } 
             }}> 
             <div className='input__container'>

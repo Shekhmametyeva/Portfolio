@@ -50,7 +50,7 @@ function App() {
       <div className='todo'>
         <FormComponent 
             dataFull={[...data, ...madeData]} 
-            updateStateData={(value, rank) => setData([...data, {value: value, complete: false, rank: rank}])}
+            editStateData={(value, rank) => setData([...data, {value: value, complete: false, rank: rank}])}
             highlight={(value) => setHighlighted(value)}
             ranksList={ranksList}
         />
@@ -59,7 +59,8 @@ function App() {
         <ToDoListComponent 
             highlighted={highlighted}
             highlight={(value) => setHighlighted(value)}
-            data={ 
+            data={data}
+            dataShow={ 
               rank === 'Все' 
               ? sort 
                 ? sortFunction([...data]) 
@@ -85,7 +86,8 @@ function App() {
         <ToDoListComponent 
             highlighted={highlighted}
             highlight={(value) => setHighlighted(value)}
-            data={ 
+            data={madeData}
+            dataShow={ 
               rank === 'Все' 
               ? sort 
                 ? sortFunction([...madeData]) 
