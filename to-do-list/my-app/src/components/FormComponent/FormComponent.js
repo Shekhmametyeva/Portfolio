@@ -35,7 +35,7 @@ function FormComponent (props) {
                 <ButtonSvgComponent name='add' type='submit' disabled={valid}/>
             </div>
             {prompt}
-            <RankFormComponent rank={props.rank} activeRank={activeRank} changeActiveRanc={(value) => setActiveRank(value)}/>
+            <RankFormComponent ranksList={props.ranksList} activeRank={activeRank} changeActiveRanc={(value) => setActiveRank(value)}/>
         </form>
     )
 }

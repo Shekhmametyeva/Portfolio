@@ -3,8 +3,7 @@ import FormComponent from './components/FormComponent/FormComponent';
 import ToDoListComponent from './components/ToDoListComponent/ToDoListComponent';
 import React, {useState} from 'react';
 import SortComponent from './components/SortComponent/SortComponent';
-import { sortFunction } from './helperFunctions/helperFunctions'
-
+import { sortFunction } from './helperFunctions/helperFunctions';
 
 function App() {
   const [data, setData] = useState([]);
@@ -16,9 +15,7 @@ function App() {
   const [menuSort, setMenuSort] = useState(false);
   const [sort, setSort] = useState(false);
   const [rank, setRank] = useState('Все');
-  const ranks = ['Личные', 'Семья', 'Работа', 'Покупки', 'Учеба'];
-
-  console.log(rank)
+  const ranksList = ['Личные', 'Семья', 'Работа', 'Покупки', 'Учеба'];
 
   const active = data.length ? <h2 className='todo__title'>Активные:</h2>: null;
   const completed = madeData.length ? <h2 className='todo__title'>Завершенные:</h2>: null;
@@ -27,7 +24,8 @@ function App() {
       setRank={(value) => setRank(value)} 
       changeActive={(value) => setSort(value)} 
       active={sort} 
-      rank={ranks} 
+      ranksList={ranksList} 
+      rank={rank}
       menuRank={menuRank} 
       setMenuRank={() => setMenuRank(!menuRank)} 
       menuSort={menuSort} 
@@ -54,7 +52,7 @@ function App() {
             dataFull={[...data, ...madeData]} 
             updateStateData={(value, rank) => setData([...data, {value: value, complete: false, rank: rank}])}
             highlight={(value) => setHighlighted(value)}
-            rank={ranks}
+            ranksList={ranksList}
         />
         {buttonSort}
         {active}

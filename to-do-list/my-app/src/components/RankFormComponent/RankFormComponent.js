@@ -3,7 +3,7 @@ import './RankFormComponent.css';
 
 function RankFormComponent (props) {
     
-    const button = props.rank.map(el => {
+    const button = props.ranksList.map(el => {
         return (
             <div 
                 key={el} 
