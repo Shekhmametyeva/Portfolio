@@ -17,6 +17,9 @@ function FormComponent (props) {
                 event.preventDefault();
                 const newValue = checkValidity(props, value, () => setValue(''), (text)=> setValid(text));
                 if (newValue) {
+                    if(activeRank !== props.rank || props.rank !== 'Все') {
+                        props.changeRank()
+                    }
                     props.editStateData(newValue, activeRank)
                 } 
             }}> 

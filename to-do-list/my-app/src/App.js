@@ -53,6 +53,8 @@ function App() {
             editStateData={(value, rank) => setData([...data, {value: value, complete: false, rank: rank}])}
             highlight={(value) => setHighlighted(value)}
             ranksList={ranksList}
+            rank={rank}
+            changeRank={() => setRank('Все')}
         />
         {buttonSort}
         {active}
