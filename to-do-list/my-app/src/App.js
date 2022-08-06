@@ -49,7 +49,15 @@ function App() {
         <ToDoListComponent 
             highlighted={highlighted}
             highlight={(value) => setHighlighted(value)}
-            data={ sort ? sortFunction([...data]) : [...data] }
+            data={ 
+              rank === 'Все' 
+              ? sort 
+                ? sortFunction([...data]) 
+                : [...data] 
+              : sort 
+                ? sortFunction([...data].filter(el => el.rank === rank))
+                : [...data].filter(el => el.rank === rank) 
+            }
             updateSetData={(index, elem, rank) => {
               setMadeData([...madeData, {value: elem, complete: true, rank: rank}])
               setData([...data.slice(0, index), ...data.slice(index + 1, data.length)])
@@ -67,7 +75,15 @@ function App() {
         <ToDoListComponent 
             highlighted={highlighted}
             highlight={(value) => setHighlighted(value)}
-            data={ sort ? sortFunction([...madeData]) : [...madeData] }
+            data={ 
+              rank === 'Все' 
+              ? sort 
+                ? sortFunction([...madeData]) 
+                : [...madeData] 
+              : sort 
+                ? sortFunction([...madeData].filter(el => el.rank === rank))
+                : [...madeData].filter(el => el.rank === rank) 
+            }
             updateSetData={(index, elem, rank) => {
               setData([...data, {value: elem, complete: false, rank: rank}])
               setMadeData([...madeData.slice(0, index), ...madeData.slice(index + 1, madeData.length)])
