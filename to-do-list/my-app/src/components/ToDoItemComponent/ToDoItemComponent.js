@@ -1,7 +1,7 @@
 import './ToDoItemComponent.css';
 import ButtonSvgComponent from '../ButtonSvgComponent/ButtonSvgComponent';
 import FormItemComponent from '../FormItemComponent/FormItemComponent';
-import MenuItemComponent from '../MenuItemComponent/MenuItemComponent';
+import MenuComponent from '../MenuComponent/MenuComponent';
 
 
 
@@ -18,11 +18,11 @@ function ToDoItemComponent (props) {
         : null
     
     const openMenu = props.menu 
-        ? <MenuItemComponent 
-        deleteItem={props.deleteItem} 
-        updateSetinputItem={props.updateSetinputItem} 
-        index={props.index} 
-        element={props.element}/>
+        ? <MenuComponent 
+            component={[
+                {text: 'Удалить', button: 'delete', callback: props.deleteItem, value: props.index}, 
+                {text: 'Редактировать', button: 'edit', callback: props.updateSetinputItem, value: props.element.value}
+            ]}/>
         : null;
 
     return (
