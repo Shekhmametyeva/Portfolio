@@ -3,6 +3,7 @@ import FormComponent from './components/FormComponent/FormComponent';
 import ToDoListComponent from './components/ToDoListComponent/ToDoListComponent';
 import React, {useState} from 'react';
 import SortComponent from './components/SortComponent/SortComponent';
+import { sortFunction } from './helperFunctions/helperFunctions'
 
 
 function App() {
@@ -11,6 +12,13 @@ function App() {
   const [highlighted, setHighlighted] = useState();
   const [menu, setMenu] = useState('');
   const [inputItemOpen, setInputItemOpen] = useState(false);
+  const [menuRank, setMenuRank] = useState(false);
+  const [menuSort, setMenuSort] = useState(false);
+  const [sort, setSort] = useState(false);
+  const [rank, setRank] = useState('Все');
+  const ranks = ['Личные', 'Семья', 'Работа', 'Покупки', 'Учеба'];
+
+  console.log(rank)
 
   const active = data.length ? <h2 className='todo__title'>Активные:</h2>: null;
   const completed = madeData.length ? <h2 className='todo__title'>Завершенные:</h2>: null;
@@ -21,19 +29,27 @@ function App() {
       }
       if(inputItemOpen && !event.target.closest('.todo__item__form')){
         setInputItemOpen('')
-      }}}>
+      }
+      if(menuRank && !event.target.closest('.sort__menu')){
+        setMenuRank(false)
+      }
+      if(menuSort && !event.target.closest('.sort__menu')){
+        setMenuSort(false)
+      }
+      }}>
       <div className='todo'>
         <FormComponent 
             dataFull={[...data, ...madeData]} 
             updateStateData={(value, rank) => setData([...data, {value: value, complete: false, rank: rank}])}
             highlight={(value) => setHighlighted(value)}
+            rank={ranks}
         />
-        <SortComponent />
+        <SortComponent setRank={(value) => setRank(value)} changeActive={(value) => setSort(value)} active={sort} disabled={![...data, ...madeData].length} rank={ranks} menuRank={menuRank} setMenuRank={() => setMenuRank(!menuRank)} menuSort={menuSort} setMenuSort={() => setMenuSort(!menuSort)}/>
         {active}
         <ToDoListComponent 
             highlighted={highlighted}
             highlight={(value) => setHighlighted(value)}
-            data={[...data]} 
+            data={ sort ? sortFunction([...data]) : [...data] }
             updateSetData={(index, elem, rank) => {
               setMadeData([...madeData, {value: elem, complete: true, rank: rank}])
               setData([...data.slice(0, index), ...data.slice(index + 1, data.length)])
@@ -51,7 +67,7 @@ function App() {
         <ToDoListComponent 
             highlighted={highlighted}
             highlight={(value) => setHighlighted(value)}
-            data={[...madeData]} 
+            data={ sort ? sortFunction([...madeData]) : [...madeData] }
             updateSetData={(index, elem, rank) => {
               setData([...data, {value: elem, complete: false, rank: rank}])
               setMadeData([...madeData.slice(0, index), ...madeData.slice(index + 1, madeData.length)])

@@ -8,8 +8,11 @@
     justify-content: space-between;
     gap: 10px;
     border-radius: 16px;
-    background-color: #eee;
-    
+    background-color: #eee;  
+}
+.todo__done:hover {
+    background-color: #01680170;
+    border-radius: 7px;
 }
 .todo__text {
     flex-grow: 1;
@@ -22,6 +25,10 @@
     background-color: #b8b8b8;
     color: #9b9a9a;
     position: relative;
+}
+.done .todo__done {
+    background-color: #01680170;
+    border-radius: 7px;
 }
 .done::before {
     content: '';
@@ -56,6 +63,6 @@
     }
   
     to {
-        background-color: #05dcb57c;
+        background-color: #01680170;
     }
 }

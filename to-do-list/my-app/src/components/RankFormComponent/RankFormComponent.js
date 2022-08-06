@@ -2,8 +2,8 @@ import ButtonSvgComponent from '../ButtonSvgComponent/ButtonSvgComponent';
 import './RankFormComponent.css';
 
 function RankFormComponent (props) {
-    const ranks = ['Личные', 'Семья', 'Работа', 'Покупки', 'Учеба']
-    const button = ranks.map(el => {
+    
+    const button = props.rank.map(el => {
         return (
             <div 
                 key={el} 

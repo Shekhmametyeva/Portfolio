@@ -23,3 +23,17 @@
 .todo__menu__item:hover {
     background-color: #01680177;
 }
+.sort__menu {
+    left: 45px;
+    top: 0;
+    width: 180px;
+}
+.rank__menu {
+    left: 65px;
+    top: 0;
+    width: 180px;
+}
+
+.todo__menu_active {
+    background-color: #01680177;
+}

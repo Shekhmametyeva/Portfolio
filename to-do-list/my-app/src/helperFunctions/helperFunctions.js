@@ -23,3 +23,13 @@ export function checkValidity (props, value, setValue, setValid) {
     setValue()
     return value.trim()
 }
+
+export function sortFunction (arr) {
+    arr.sort((a,b) => {
+      if (!isNaN(+a.value) && !isNaN(+b.value)) {
+          return a.value - b.value
+      }
+      return a.value.toLowerCase() >= b.value.toLowerCase() ? 1 : -1;    
+    });
+    return arr
+  }

@@ -40,7 +40,7 @@ function ToDoItemComponent (props) {
             <ButtonSvgComponent 
                 callback={() => props.updateSetData(props.index, props.element.value, props.element.rank)}
                 name='complete' 
-                class='todo__button'   
+                class='todo__button todo__done'   
             />
             <ButtonSvgComponent 
                 callback={props.updateSetMenu}
