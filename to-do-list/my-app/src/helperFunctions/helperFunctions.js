@@ -1,29 +1,34 @@
-export function checkValidity (props, value, setValue, setValid) {
+export function checkValidity (dataFull, value) {
     if(!value.trim()) {
+        return null
+    }
+    if(dataFull.find(el => el.value === value.trim())) {
+        return 'found'
+    }
+    return value.trim()
+}
+
+export function handleInvalidValue (resultValidation, setValue, setValid, highlight, value) {
+    if(!resultValidation) {
         setValid('поле не заполнено')
         setTimeout(() => {
             setValue()
             setValid(false)
         }, 1500);
-        return null
+        return 
     }
-    if(props.element === value.trim()) {
-        props.closeInput()
-        return null
-    }
-    if(props.dataFull.find(el => el.value === value.trim())) {
-        props.highlight(value.trim())
+    if (resultValidation === 'found') {
+        highlight(value)
         setValid(true)
         setTimeout(() => {
             setValue()
             setValid(false)
         }, 1500);
-        return null
+        return 
     }
-    setValue()
-    return value.trim()
+    return true
 }
-
+ 
 export function sortFunction (arr) {
     arr.sort((a,b) => {
       if (!isNaN(+a.value) && !isNaN(+b.value)) {
@@ -32,4 +37,4 @@ export function sortFunction (arr) {
       return a.value.toLowerCase() >= b.value.toLowerCase() ? 1 : -1;    
     });
     return arr
-  }
+}

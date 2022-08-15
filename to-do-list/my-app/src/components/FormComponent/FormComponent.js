@@ -1,8 +1,19 @@
 import './FormComponent.css';
 import ButtonSvgComponent from '../ButtonSvgComponent/ButtonSvgComponent';
 import React, { useState } from 'react';
-import { checkValidity } from '../../helperFunctions/helperFunctions'
+import { checkValidity, handleInvalidValue } from '../../helperFunctions/helperFunctions'
 import RankFormComponent from '../RankFormComponent/RankFormComponent';
+
+function processValidation (resultValidation, props, activeRank, value, setValue, setValid) {
+    const resultValueProcessing = handleInvalidValue (resultValidation, setValue, setValid, props.highlight, value);
+    if (resultValueProcessing) {
+        if(activeRank !== props.rank || props.rank !== 'Все') {
+            props.changeRank()
+        }
+    props.editStateData(resultValidation, activeRank)
+    }
+    setValue()
+}
 
 function FormComponent (props) {
     const [value, setValue] = useState('');
@@ -15,13 +26,8 @@ function FormComponent (props) {
             className='todo__form' 
             onSubmit={(event) => {
                 event.preventDefault();
-                const newValue = checkValidity(props, value, () => setValue(''), (text)=> setValid(text));
-                if (newValue) {
-                    if(activeRank !== props.rank || props.rank !== 'Все') {
-                        props.changeRank()
-                    }
-                    props.editStateData(newValue, activeRank)
-                } 
+                const resultValidation = checkValidity(props.dataFull, value);
+                processValidation (resultValidation, props, activeRank, value.trim(), () => setValue(''), (text)=> setValid(text));
             }}> 
             <div className='input__container'>
                 <input
