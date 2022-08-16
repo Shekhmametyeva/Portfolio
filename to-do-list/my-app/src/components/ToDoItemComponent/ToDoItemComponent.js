@@ -11,7 +11,7 @@ function ToDoItemComponent (props) {
                 element={props.element.value} 
                 rank={props.element.rank} 
                 index={props.index} 
-                updateStateData={props.updateStateData} 
+                editElement={props.editElement} 
                 highlight={props.highlight} 
                 closeInput={() => props.updateSetinputItem('')} 
                 dataFull={props.dataFull} /> 
@@ -38,7 +38,7 @@ function ToDoItemComponent (props) {
             <ButtonSvgComponent name={props.element.rank} class='todo__button' type='button'/>
             <h5 className='todo__text'>{props.element.value}</h5>
             <ButtonSvgComponent 
-                callback={() => props.updateSetData(props.index, props.element.value, props.element.rank)}
+                callback={() => props.moveElAnotherDataset(props.index, props.element.value, props.element.rank)}
                 name='complete' 
                 class='todo__button todo__done'   
             />

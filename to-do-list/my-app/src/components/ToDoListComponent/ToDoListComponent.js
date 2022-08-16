@@ -12,11 +12,11 @@ function ToDoListComponent (props) {
                 key={el.value} 
                 index={props.data.findIndex(elem => elem.value === el.value)} 
                 element={el}
-                updateSetData={props.updateSetData}
+                moveElAnotherDataset={props.moveElAnotherDataset}
                 menu={props.menu === el.value}
                 updateSetMenu={props.updateSetMenu} 
                 deleteItem={props.deleteItem}
-                updateStateData={props.updateStateData}
+                editElement={props.editElement}
                 inputItemOpen={props.inputItemOpen === el.value}
                 updateSetinputItem={props.updateSetinputItem}
                 

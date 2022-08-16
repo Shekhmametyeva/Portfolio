@@ -10,7 +10,7 @@ function processValidation (resultValidation, props, activeRank, value, setValue
         if(activeRank !== props.rank || props.rank !== 'Все') {
             props.changeRank()
         }
-    props.editStateData(resultValidation, activeRank)
+    props.addElementToData(resultValidation, activeRank)
     }
     setValue()
 }

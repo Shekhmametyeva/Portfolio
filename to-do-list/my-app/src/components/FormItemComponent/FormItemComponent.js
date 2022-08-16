@@ -9,7 +9,7 @@ function processValidation (resultValidation, props, value, setValue, setValid) 
     console.log(props.rank)
     const resultValueProcessing = handleInvalidValue (resultValidation, setValue, setValid, props.highlight, value);
     if (resultValueProcessing) {
-        props.updateStateData(props.index, resultValidation, props.rank)
+        props.editElement(props.index, resultValidation, props.rank)
     }
     setValue()
 }

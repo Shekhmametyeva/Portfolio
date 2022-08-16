@@ -3,7 +3,9 @@ import FormComponent from './components/FormComponent/FormComponent';
 import ToDoListComponent from './components/ToDoListComponent/ToDoListComponent';
 import React, {useState} from 'react';
 import SortComponent from './components/SortComponent/SortComponent';
-import { sortFunction } from './helperFunctions/helperFunctions';
+import { toggleSorting } from './helperFunctions/helperFunctions';
+import { addElementToDataFun, moveElToCompletedFun, editElementFun, deleteElementFun } from './helperFunctions/updateData';
+
 
 function App() {
   const [data, setData] = useState([]);
@@ -50,7 +52,7 @@ function App() {
       <div className='todo'>
         <FormComponent 
             dataFull={[...data, ...madeData]} 
-            editStateData={(value, rank) => setData([...data, {value: value, complete: false, rank: rank}])}
+            addElementToData ={(value, rank) => addElementToDataFun(setData, data, value, rank)}
             highlight={(value) => setHighlighted(value)}
             ranksList={ranksList}
             rank={rank}
@@ -62,53 +64,35 @@ function App() {
             highlighted={highlighted}
             highlight={(value) => setHighlighted(value)}
             data={data}
-            dataShow={ 
-              rank === 'Все' 
-              ? sort 
-                ? sortFunction([...data]) 
-                : [...data] 
-              : sort 
-                ? sortFunction([...data].filter(el => el.rank === rank))
-                : [...data].filter(el => el.rank === rank) 
-            }
-            updateSetData={(index, elem, rank) => {
-              setMadeData([...madeData, {value: elem, complete: true, rank: rank}])
-              setData([...data.slice(0, index), ...data.slice(index + 1, data.length)])
+            dataShow={ toggleSorting (rank, sort, data) }
+            moveElAnotherDataset={(index, elem, rank) => {
+              moveElToCompletedFun(setMadeData, madeData, setData, data, index, elem, rank, true)
             }}
             menu={menu}
             updateSetMenu={(value) => setMenu(value)}  
-            deleteItem={(index) => setData([...data.slice(0, index), ...data.slice(index + 1, data.length)])}  
+            deleteItem={(index) => deleteElementFun(setData, data, index)}   
             dataFull={[...data, ...madeData]} 
             inputItemOpen={inputItemOpen}
             updateSetinputItem={(value) => {
               setInputItemOpen(value)}}
-            updateStateData={(index, value, rank) => setData([...data.slice(0, index), {value: value, complete: false, rank: rank}, ...data.slice(index + 1, data.length)])}
+            editElement={(index, value, rank) => editElementFun(setData, data, index, value, rank, false)}
         />
         {completed}
         <ToDoListComponent 
             highlighted={highlighted}
             highlight={(value) => setHighlighted(value)}
             data={madeData}
-            dataShow={ 
-              rank === 'Все' 
-              ? sort 
-                ? sortFunction([...madeData]) 
-                : [...madeData] 
-              : sort 
-                ? sortFunction([...madeData].filter(el => el.rank === rank))
-                : [...madeData].filter(el => el.rank === rank) 
-            }
-            updateSetData={(index, elem, rank) => {
-              setData([...data, {value: elem, complete: false, rank: rank}])
-              setMadeData([...madeData.slice(0, index), ...madeData.slice(index + 1, madeData.length)])
+            dataShow={ toggleSorting (rank, sort, madeData) }
+            moveElAnotherDataset={(index, elem, rank) => {
+              moveElToCompletedFun(setData, data, setMadeData, madeData, index, elem, rank, false)
             }}
             menu={menu}
             updateSetMenu={(value) => setMenu(value)}    
-            deleteItem={(index) => setMadeData([...madeData.slice(0, index), ...madeData.slice(index + 1, madeData.length)])} 
+            deleteItem={(index) => deleteElementFun(setMadeData, madeData, index)}   
             dataFull={[...data, ...madeData]} 
             inputItemOpen={inputItemOpen}
             updateSetinputItem={(value) => setInputItemOpen(value)}
-            updateStateData={(index, value, rank) => setMadeData([...madeData.slice(0, index), {value: value, complete: true, rank: rank}, ...madeData.slice(index + 1, madeData.length)])}
+            editElement={(index, value, rank) => editElementFun(setMadeData, madeData, index, value, rank, true)}
         />
       </div>
     </div>

@@ -8,7 +8,7 @@ function SortComponent (props) {
         ? <MenuComponent 
             component={[
                 {text: 'По хронологии', button: 'arrow', active: !props.active, callback: props.changeActive, value: false}, 
-                {text: 'По алфавиту', button: 'arrow', active: props.active, callback: props.changeActive, value: true}
+                {text: 'По возрастанию', button: 'arrow', active: props.active, callback: props.changeActive, value: true}
             ]}
             class='sort__menu'/>
         : null;
