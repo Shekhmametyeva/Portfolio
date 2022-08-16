@@ -64,7 +64,7 @@ function App() {
             highlighted={highlighted}
             highlight={(value) => setHighlighted(value)}
             data={data}
-            dataShow={ toggleSorting (rank, sort, data) }
+            dataShow={ toggleSorting (rank, sort, [...data]) }
             moveElAnotherDataset={(index, elem, rank) => {
               moveElToCompletedFun(setMadeData, madeData, setData, data, index, elem, rank, true)
             }}
@@ -82,7 +82,7 @@ function App() {
             highlighted={highlighted}
             highlight={(value) => setHighlighted(value)}
             data={madeData}
-            dataShow={ toggleSorting (rank, sort, madeData) }
+            dataShow={ toggleSorting (rank, sort, [...madeData]) }
             moveElAnotherDataset={(index, elem, rank) => {
               moveElToCompletedFun(setData, data, setMadeData, madeData, index, elem, rank, false)
             }}
