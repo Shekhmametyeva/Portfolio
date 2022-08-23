@@ -8,14 +8,27 @@
 }
 .todo {
     width: 700px;
-    min-height: 500px;
-    padding: 20px;
+    height: 80vh;
     display: flex;
     flex-direction: column;
     gap: 20px;
-    position: relative;
+    
+}
+.todo__list {
+    overflow-y: auto;
+}
+.todo__list::-webkit-scrollbar {
+    background-color: #eeeeee5e;
+    width: 10px;
+    border-radius: 6px;
+}
+.todo__list::-webkit-scrollbar-thumb {
+    background-color: #eee;
+    border-radius: 6px;
+    border: 1px solid #9e9e9e;
 }
 .todo__title {
     color: #eee;
+    padding: 10px 0;
     
 }

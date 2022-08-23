@@ -1,7 +1,6 @@
 import './ToDoItemComponent.css';
 import ButtonSvgComponent from '../ButtonSvgComponent/ButtonSvgComponent';
 import FormItemComponent from '../FormItemComponent/FormItemComponent';
-import MenuComponent from '../MenuComponent/MenuComponent';
 
 
 
@@ -15,14 +14,6 @@ function ToDoItemComponent (props) {
                 highlight={props.highlight} 
                 closeInput={() => props.updateSetinputItem('')} 
                 dataFull={props.dataFull} /> 
-        : null
-    
-    const openMenu = props.menu 
-        ? <MenuComponent 
-            component={[
-                {text: 'Удалить', button: 'delete', callback: props.deleteItem, value: props.index}, 
-                {text: 'Редактировать', button: 'edit', callback: props.updateSetinputItem, value: props.element.value}
-            ]}/>
         : null;
 
     return (
@@ -42,13 +33,8 @@ function ToDoItemComponent (props) {
                 name='complete' 
                 class='todo__button todo__done'   
             />
-            <ButtonSvgComponent 
-                callback={props.updateSetMenu}
-                value={props.menu ? '' : props.element.value}
-                name='menu' 
-                class='todo__button todo__menu__button'   
-            />
-            {openMenu}
+            <ButtonSvgComponent class='todo__button' name='edit' callback={props.updateSetinputItem} value={props.element.value} />
+            <ButtonSvgComponent class='todo__button' name='delete' callback={props.deleteItem} value={props.index} />
             {input}
         </div>    
     )

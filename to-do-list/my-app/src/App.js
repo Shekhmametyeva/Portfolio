@@ -32,7 +32,7 @@ function App() {
       setMenuRank={() => setMenuRank(!menuRank)} 
       menuSort={menuSort} 
       setMenuSort={() => setMenuSort(!menuSort)}/>
-    : null
+    : null;
 
   return (
     <div className='wrapper' onClick={(event) => {
@@ -59,41 +59,43 @@ function App() {
             changeRank={() => setRank('Все')}
         />
         {buttonSort}
-        {active}
-        <ToDoListComponent 
-            highlighted={highlighted}
-            highlight={(value) => setHighlighted(value)}
-            data={data}
-            dataShow={ toggleSorting (rank, sort, [...data]) }
-            moveElAnotherDataset={(index, elem, rank) => {
-              moveElToCompletedFun(setMadeData, madeData, setData, data, index, elem, rank, true)
-            }}
-            menu={menu}
-            updateSetMenu={(value) => setMenu(value)}  
-            deleteItem={(index) => deleteElementFun(setData, data, index)}   
-            dataFull={[...data, ...madeData]} 
-            inputItemOpen={inputItemOpen}
-            updateSetinputItem={(value) => {
-              setInputItemOpen(value)}}
-            editElement={(index, value, rank) => editElementFun(setData, data, index, value, rank, false)}
-        />
-        {completed}
-        <ToDoListComponent 
-            highlighted={highlighted}
-            highlight={(value) => setHighlighted(value)}
-            data={madeData}
-            dataShow={ toggleSorting (rank, sort, [...madeData]) }
-            moveElAnotherDataset={(index, elem, rank) => {
-              moveElToCompletedFun(setData, data, setMadeData, madeData, index, elem, rank, false)
-            }}
-            menu={menu}
-            updateSetMenu={(value) => setMenu(value)}    
-            deleteItem={(index) => deleteElementFun(setMadeData, madeData, index)}   
-            dataFull={[...data, ...madeData]} 
-            inputItemOpen={inputItemOpen}
-            updateSetinputItem={(value) => setInputItemOpen(value)}
-            editElement={(index, value, rank) => editElementFun(setMadeData, madeData, index, value, rank, true)}
-        />
+        <div className='todo__list'>
+          {active}
+          <ToDoListComponent 
+              highlighted={highlighted}
+              highlight={(value) => setHighlighted(value)}
+              data={data}
+              dataShow={ toggleSorting (rank, sort, [...data]) }
+              moveElAnotherDataset={(index, elem, rank) => {
+                moveElToCompletedFun(setMadeData, madeData, setData, data, index, elem, rank, true)
+              }}
+              menu={menu}
+              updateSetMenu={(value) => setMenu(value)}  
+              deleteItem={(index) => deleteElementFun(setData, data, index)}   
+              dataFull={[...data, ...madeData]} 
+              inputItemOpen={inputItemOpen}
+              updateSetinputItem={(value) => {
+                setInputItemOpen(value)}}
+              editElement={(index, value, rank) => editElementFun(setData, data, index, value, rank, false)}
+          />
+          {completed}
+          <ToDoListComponent 
+              highlighted={highlighted}
+              highlight={(value) => setHighlighted(value)}
+              data={madeData}
+              dataShow={ toggleSorting (rank, sort, [...madeData]) }
+              moveElAnotherDataset={(index, elem, rank) => {
+                moveElToCompletedFun(setData, data, setMadeData, madeData, index, elem, rank, false)
+              }}
+              menu={menu}
+              updateSetMenu={(value) => setMenu(value)}    
+              deleteItem={(index) => deleteElementFun(setMadeData, madeData, index)}   
+              dataFull={[...data, ...madeData]} 
+              inputItemOpen={inputItemOpen}
+              updateSetinputItem={(value) => setInputItemOpen(value)}
+              editElement={(index, value, rank) => editElementFun(setMadeData, madeData, index, value, rank, true)}
+          />
+        </div>
       </div>
     </div>
   );
