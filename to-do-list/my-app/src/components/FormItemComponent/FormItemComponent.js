@@ -6,7 +6,6 @@ import { checkValidity, handleInvalidValue } from '../../helperFunctions/helperF
 
 
 function processValidation (resultValidation, props, value, setValue, setValid) {
-    console.log(props.rank)
     const resultValueProcessing = handleInvalidValue (resultValidation, setValue, setValid, props.highlight, value);
     if (resultValueProcessing) {
         props.editElement(props.index, resultValidation, props.rank)
@@ -20,6 +19,7 @@ function FormItemComponent (props) {
     const prompt = valid ? <p className='valid'>{valid}</p> : null
     return (
         <form 
+            data-testid='form-item'
             className='todo__form todo__item__form' 
             onSubmit={(event) => {
                 event.preventDefault();
@@ -41,7 +41,7 @@ function FormItemComponent (props) {
                         setValue(event.target.value)
                     }}
                 />
-                <ButtonSvgComponent class='todo__button' name='add' type='submit' disabled={valid}/>
+                <ButtonSvgComponent data='btn-edit-elem' class='todo__button' name='add' type='submit' disabled={valid}/>
                 <ButtonSvgComponent class='todo__button close' name='add' type='button' callback={() => props.closeInput()}/>
             </div>
             {prompt}

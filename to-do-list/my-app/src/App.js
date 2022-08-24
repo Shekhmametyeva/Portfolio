@@ -11,7 +11,6 @@ function App() {
   const [data, setData] = useState([]);
   const [madeData, setMadeData] = useState([]);
   const [highlighted, setHighlighted] = useState();
-  const [menu, setMenu] = useState('');
   const [inputItemOpen, setInputItemOpen] = useState(false);
   const [menuRank, setMenuRank] = useState(false);
   const [menuSort, setMenuSort] = useState(false);
@@ -36,9 +35,6 @@ function App() {
 
   return (
     <div className='wrapper' onClick={(event) => {
-      if(!event.target.closest('.todo__menu__button')) {
-        setMenu('')
-      }
       if(inputItemOpen && !event.target.closest('.todo__item__form')){
         setInputItemOpen('')
       }
@@ -49,6 +45,7 @@ function App() {
         setMenuSort(false)
       }
       }}>
+        <h1 className='todo__title'>To-Do</h1>
       <div className='todo'>
         <FormComponent 
             dataFull={[...data, ...madeData]} 
@@ -69,8 +66,6 @@ function App() {
               moveElAnotherDataset={(index, elem, rank) => {
                 moveElToCompletedFun(setMadeData, madeData, setData, data, index, elem, rank, true)
               }}
-              menu={menu}
-              updateSetMenu={(value) => setMenu(value)}  
               deleteItem={(index) => deleteElementFun(setData, data, index)}   
               dataFull={[...data, ...madeData]} 
               inputItemOpen={inputItemOpen}
@@ -86,9 +81,7 @@ function App() {
               dataShow={ toggleSorting (rank, sort, [...madeData]) }
               moveElAnotherDataset={(index, elem, rank) => {
                 moveElToCompletedFun(setData, data, setMadeData, madeData, index, elem, rank, false)
-              }}
-              menu={menu}
-              updateSetMenu={(value) => setMenu(value)}    
+              }} 
               deleteItem={(index) => deleteElementFun(setMadeData, madeData, index)}   
               dataFull={[...data, ...madeData]} 
               inputItemOpen={inputItemOpen}

@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`тестируем ToDoItemComponent render ToDoItemComponent 1`] = `
+<div
+  class="todo__item"
+  data-testid="todo-item"
+>
+  <button
+    class="todo__button button"
+    type="button"
+  >
+    <svg
+      class="icon"
+    >
+      <use
+        xlink:href="sprite.svg#Личные"
+      />
+    </svg>
+  </button>
+  <h5
+    class="todo__text"
+  >
+    Alina
+  </h5>
+  <button
+    class="todo__button todo__done button"
+  >
+    <svg
+      class="icon"
+    >
+      <use
+        xlink:href="sprite.svg#complete"
+      />
+    </svg>
+  </button>
+  <button
+    class="todo__button button"
+    data-testid="edit"
+  >
+    <svg
+      class="icon"
+    >
+      <use
+        xlink:href="sprite.svg#edit"
+      />
+    </svg>
+  </button>
+  <button
+    class="todo__button button"
+  >
+    <svg
+      class="icon"
+    >
+      <use
+        xlink:href="sprite.svg#delete"
+      />
+    </svg>
+  </button>
+</div>
+`;

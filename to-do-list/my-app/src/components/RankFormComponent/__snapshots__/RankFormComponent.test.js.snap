@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`тестируем FormComponent render RankFormComponent 1`] = `
+Array [
+  <button
+    class="rank__button button"
+    type="button"
+  >
+    <svg
+      class="icon"
+    >
+      <use
+        xlink:href="sprite.svg#Личные"
+      />
+    </svg>
+  </button>,
+  <button
+    class="rank__button button"
+    type="button"
+  >
+    <svg
+      class="icon"
+    >
+      <use
+        xlink:href="sprite.svg#Семья"
+      />
+    </svg>
+  </button>,
+  <button
+    class="rank__button button"
+    type="button"
+  >
+    <svg
+      class="icon"
+    >
+      <use
+        xlink:href="sprite.svg#Работа"
+      />
+    </svg>
+  </button>,
+  <button
+    class="rank__button button"
+    type="button"
+  >
+    <svg
+      class="icon"
+    >
+      <use
+        xlink:href="sprite.svg#Покупки"
+      />
+    </svg>
+  </button>,
+  <button
+    class="rank__button button"
+    type="button"
+  >
+    <svg
+      class="icon"
+    >
+      <use
+        xlink:href="sprite.svg#Учеба"
+      />
+    </svg>
+  </button>,
+]
+`;

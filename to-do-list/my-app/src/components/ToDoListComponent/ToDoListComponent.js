@@ -13,7 +13,6 @@ function ToDoListComponent (props) {
                 index={props.data.findIndex(elem => elem.value === el.value)} 
                 element={el}
                 moveElAnotherDataset={props.moveElAnotherDataset}
-                menu={props.menu === el.value}
                 updateSetMenu={props.updateSetMenu} 
                 deleteItem={props.deleteItem}
                 editElement={props.editElement}

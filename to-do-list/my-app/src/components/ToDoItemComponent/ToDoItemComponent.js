@@ -18,6 +18,7 @@ function ToDoItemComponent (props) {
 
     return (
         <div  
+            data-testid='todo-item'
             className={props.element.complete 
                 ?  (props.highlighted 
                     ? 'todo__item done highlighted' 
@@ -33,7 +34,7 @@ function ToDoItemComponent (props) {
                 name='complete' 
                 class='todo__button todo__done'   
             />
-            <ButtonSvgComponent class='todo__button' name='edit' callback={props.updateSetinputItem} value={props.element.value} />
+            <ButtonSvgComponent data='edit' class='todo__button' name='edit' callback={props.updateSetinputItem} value={props.element.value} />
             <ButtonSvgComponent class='todo__button' name='delete' callback={props.deleteItem} value={props.index} />
             {input}
         </div>    

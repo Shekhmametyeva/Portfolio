@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`тестируем FormItemComponent render FormItemComponent 1`] = `
+<form
+  class="todo__form todo__item__form"
+  data-testid="form-item"
+>
+  <div
+    class="input__container"
+  >
+    <input
+      class="todo__input"
+      type="text"
+      value=""
+    />
+    <button
+      class="todo__button button"
+      data-testid="btn-edit-elem"
+      type="submit"
+    >
+      <svg
+        class="icon"
+      >
+        <use
+          xlink:href="sprite.svg#add"
+        />
+      </svg>
+    </button>
+    <button
+      class="todo__button close button"
+      type="button"
+    >
+      <svg
+        class="icon"
+      >
+        <use
+          xlink:href="sprite.svg#add"
+        />
+      </svg>
+    </button>
+  </div>
+</form>
+`;

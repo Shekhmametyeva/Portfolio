@@ -1,0 +1,141 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`тестируем FormComponent render FormComponent 1`] = `
+<form
+  class="todo__form"
+  data-testid="form"
+>
+  <div
+    class="input__container"
+  >
+    <input
+      class="todo__input"
+      placeholder="Что добавим в список?"
+      type="text"
+      value=""
+    />
+    <button
+      class="button"
+      data-testid="btn-add-elem"
+      type="submit"
+    >
+      <svg
+        class="icon"
+      >
+        <use
+          xlink:href="sprite.svg#add"
+        />
+      </svg>
+    </button>
+  </div>
+  <div
+    class="form__button__container"
+  >
+    <div
+      class="form__button active"
+      data-testid="rank-button"
+      value="Личные"
+    >
+      <button
+        class="rank__button button"
+        type="button"
+      >
+        <svg
+          class="icon"
+        >
+          <use
+            xlink:href="sprite.svg#Личные"
+          />
+        </svg>
+      </button>
+      <p>
+        Личные
+      </p>
+    </div>
+    <div
+      class="form__button"
+      data-testid="rank-button"
+      value="Семья"
+    >
+      <button
+        class="rank__button button"
+        type="button"
+      >
+        <svg
+          class="icon"
+        >
+          <use
+            xlink:href="sprite.svg#Семья"
+          />
+        </svg>
+      </button>
+      <p>
+        Семья
+      </p>
+    </div>
+    <div
+      class="form__button"
+      data-testid="rank-button"
+      value="Работа"
+    >
+      <button
+        class="rank__button button"
+        type="button"
+      >
+        <svg
+          class="icon"
+        >
+          <use
+            xlink:href="sprite.svg#Работа"
+          />
+        </svg>
+      </button>
+      <p>
+        Работа
+      </p>
+    </div>
+    <div
+      class="form__button"
+      data-testid="rank-button"
+      value="Покупки"
+    >
+      <button
+        class="rank__button button"
+        type="button"
+      >
+        <svg
+          class="icon"
+        >
+          <use
+            xlink:href="sprite.svg#Покупки"
+          />
+        </svg>
+      </button>
+      <p>
+        Покупки
+      </p>
+    </div>
+    <div
+      class="form__button"
+      data-testid="rank-button"
+      value="Учеба"
+    >
+      <button
+        class="rank__button button"
+        type="button"
+      >
+        <svg
+          class="icon"
+        >
+          <use
+            xlink:href="sprite.svg#Учеба"
+          />
+        </svg>
+      </button>
+      <p>
+        Учеба
+      </p>
+    </div>
+  </div>
+</form>
+`;

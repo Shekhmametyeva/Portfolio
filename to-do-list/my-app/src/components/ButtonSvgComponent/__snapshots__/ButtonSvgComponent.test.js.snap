@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`тестируем ButtonSvgComponent render ButtonSvgComponent 1`] = `
+<button
+  class="button"
+>
+  <svg
+    class="icon"
+  >
+    <use
+      xlink:href="sprite.svg#add"
+    />
+  </svg>
+</button>
+`;
+
+
