@@ -10,6 +10,12 @@ export function moveElToCompletedFun(changeTargetData , targetData, changeInitia
 export function editElementFun (changeTargetData, initialData, index, value, rank, complite) {
     changeTargetData([...initialData.slice(0, index), {value: value, complete: complite, rank: rank}, ...initialData.slice(index + 1, initialData.length)])
 }
+
 export function deleteElementFun (changeTargetData, initialData, index) {
     changeTargetData([...initialData.slice(0, index), ...initialData.slice(index + 1, initialData.length)])
+}
+
+export function deleteAllItemsFun (setData, setMadeData) {
+    setData([])
+    setMadeData([])
 }

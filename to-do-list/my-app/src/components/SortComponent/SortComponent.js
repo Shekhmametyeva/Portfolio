@@ -20,8 +20,12 @@ function SortComponent (props) {
             component={[{text: 'Все', callback: props.setRank, value: 'Все'}, ...ranksList]}
             class='rank__menu'/>
         : null;
+
   return (
       <div className='sort__container' data-testid='sortComponent'>
+          <div className='sort__button' onClick={() => props.setPopup()}>
+            <ButtonSvgComponent class='todo__button' name='delete' type='button' />
+          </div>
           <div className='sort__button' onClick={() => props.setMenuRank()} >
             <p className='sort__text'>{props.rank}</p>   
             <ButtonSvgComponent type='button' name={props.rank === 'Все' ? 'arrow' : props.rank} class='rank__button'/>

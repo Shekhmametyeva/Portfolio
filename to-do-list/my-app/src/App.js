@@ -3,8 +3,9 @@ import FormComponent from './components/FormComponent/FormComponent';
 import ToDoListComponent from './components/ToDoListComponent/ToDoListComponent';
 import React, {useState, useEffect} from 'react';
 import SortComponent from './components/SortComponent/SortComponent';
+import PopupComponent from './components/PopupComponent/PopupComponent';
 import { toggleSorting } from './helperFunctions/helperFunctions';
-import { addElementToDataFun, moveElToCompletedFun, editElementFun, deleteElementFun } from './helperFunctions/updateData';
+import { addElementToDataFun, moveElToCompletedFun, editElementFun, deleteElementFun, deleteAllItemsFun} from './helperFunctions/updateData';
 
 
 
@@ -17,6 +18,7 @@ function App() {
   const [menuSort, setMenuSort] = useState(false);
   const [sort, setSort] = useState(false);
   const [rank, setRank] = useState('Все');
+  const [popup, setPopup] = useState(false);
   const ranksList = ['Личные', 'Семья', 'Работа', 'Покупки', 'Учеба'];
 
   const active = data.length ? <h2 className='todo__title'>Активные:</h2>: null;
@@ -33,13 +35,16 @@ function App() {
       menuRank={menuRank} 
       setMenuRank={() => setMenuRank(!menuRank)} 
       menuSort={menuSort} 
-      setMenuSort={() => setMenuSort(!menuSort)}/>
+      setMenuSort={() => setMenuSort(!menuSort)}
+      setPopup={() => setPopup(true)}/>
     : null;
+
+    const isPopup = popup ? <PopupComponent setPopup={() => setPopup(false)} delete={() => deleteAllItemsFun(setData, setMadeData)}/> : null;
     
     useEffect(() => {
       localStorage.setItem('data', JSON.stringify(data));
     }, [data]);
-    
+
     useEffect(() => {
       localStorage.setItem('madeData', JSON.stringify(madeData));
     }, [madeData])
@@ -56,8 +61,11 @@ function App() {
       if(menuSort && !event.target.closest('.sort__menu')){
         setMenuSort(false)
       }
+      if(popup && !event.target.closest('.popup__container')){
+        setPopup(false)
+      }
       }}>
-        <h1 className='todo__title'>To-Do</h1>
+      <h1 className='todo__title'>To-Do</h1>
       <div className='todo'>
         <FormComponent 
             dataFull={[...data, ...madeData]} 
@@ -68,6 +76,7 @@ function App() {
             changeRank={() => setRank('Все')}
         />
         {buttonSort}
+        {isPopup}
         <div className='todo__list'>
           {active}
           <ToDoListComponent 
@@ -100,7 +109,7 @@ function App() {
               updateSetinputItem={(value) => setInputItemOpen(value)}
               editElement={(index, value, rank) => editElementFun(setMadeData, madeData, index, value, rank, true)}
           />
-        </div>
+        </div> 
       </div>
     </div>
   );
