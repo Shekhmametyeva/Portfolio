@@ -1,15 +1,16 @@
 import './App.css';
 import FormComponent from './components/FormComponent/FormComponent';
 import ToDoListComponent from './components/ToDoListComponent/ToDoListComponent';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import SortComponent from './components/SortComponent/SortComponent';
 import { toggleSorting } from './helperFunctions/helperFunctions';
 import { addElementToDataFun, moveElToCompletedFun, editElementFun, deleteElementFun } from './helperFunctions/updateData';
 
 
+
 function App() {
-  const [data, setData] = useState([]);
-  const [madeData, setMadeData] = useState([]);
+  const [data, setData] = useState(JSON.parse(localStorage.getItem('data')) || []);
+  const [madeData, setMadeData] = useState(JSON.parse(localStorage.getItem('madeData')) || []);
   const [highlighted, setHighlighted] = useState();
   const [inputItemOpen, setInputItemOpen] = useState(false);
   const [menuRank, setMenuRank] = useState(false);
@@ -19,7 +20,9 @@ function App() {
   const ranksList = ['Личные', 'Семья', 'Работа', 'Покупки', 'Учеба'];
 
   const active = data.length ? <h2 className='todo__title'>Активные:</h2>: null;
+
   const completed = madeData.length ? <h2 className='todo__title'>Завершенные:</h2>: null;
+
   const buttonSort = [...data, ...madeData].length 
     ? <SortComponent 
       setRank={(value) => setRank(value)} 
@@ -32,6 +35,15 @@ function App() {
       menuSort={menuSort} 
       setMenuSort={() => setMenuSort(!menuSort)}/>
     : null;
+    
+    useEffect(() => {
+      localStorage.setItem('data', JSON.stringify(data));
+    }, [data]);
+    
+    useEffect(() => {
+      localStorage.setItem('madeData', JSON.stringify(madeData));
+    }, [madeData])
+    
 
   return (
     <div className='wrapper' onClick={(event) => {
@@ -49,7 +61,7 @@ function App() {
       <div className='todo'>
         <FormComponent 
             dataFull={[...data, ...madeData]} 
-            addElementToData ={(value, rank) => addElementToDataFun(setData, data, value, rank)}
+            addElementToData ={(value, rank) => {addElementToDataFun(setData, data, value, rank)}}
             highlight={(value) => setHighlighted(value)}
             ranksList={ranksList}
             rank={rank}
