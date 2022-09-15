@@ -150,7 +150,7 @@ a {
 }
 .subhead-container {
     max-width: 460px;
-    height: 442px;
+    height: 400px;
     /* padding: 20px 0 100px; */
     display: flex;
     flex-direction: column;
@@ -168,7 +168,7 @@ a {
     padding: 9.1% 0;
 }
 .subhead-img {
-    width: 54.5%;
+    width: 58%;
 }
 .button {
     width: 207px;
@@ -357,6 +357,10 @@ a {
 }
 .helping-subtitle {
     padding-top: 30px;
+}
+.helping-icon {
+    width: 60px;
+    height: 60px;
 }
 .donation {
     display: flex;
@@ -618,7 +622,7 @@ a {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .body-container {
         text-align: center;
     }
@@ -825,6 +829,16 @@ a {
     }
     .subhead {
         background-image: url(../../assets/images/gr-bg-mob.jpg);
+    }
+}
+
+@media (max-width: 320px) {
+    .subhead-text {
+        padding: 14.1% 0;
+    }
+    .helping-icon {
+        width: 50px;
+        height: 50px;
     }
 }
 
